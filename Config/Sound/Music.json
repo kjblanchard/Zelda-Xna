@@ -1,0 +1,25 @@
+{
+    "Configuration":{
+        "Id" : "should match the Enum of the game",
+        "SongName": "The file that will be loaded",
+        "LoopStartTime": "To start when it loops the first time. Format: days,hours,minutes,seconds,milliseconds",
+        "LoopEndTime": "Where it loops to the loopstart.  Format: days,hours,minutes,seconds,milliseconds"
+    },
+    "Introloops" : 
+    [
+        {
+            "Id": 0,
+            "SongName": "Sound/TitleTheme",
+            "LoopStartTime": [0,0,0,0,400],
+            "LoopEndTime": [0,0,1,24,500]
+        },
+        {
+            "Id": 1,
+            "SongName": "Sound/MenuTheme",
+            "LoopStartTime": [0,0,0,4,700],
+            "LoopEndTime": [0,0,0,35,0]
+        }
+
+    ]
+
+}

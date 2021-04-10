@@ -13,3 +13,9 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin Sound/Master.bank
+/copy:Sound/Master.bank
+
+#begin Sound/Master.strings.bank
+/copy:Sound/Master.strings.bank
+
