@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -28,10 +28,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Sound\Master.bank">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Sound\Master.strings.bank">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
@@ -45,4 +45,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SgEngine\SgEngine.csproj" />
   </ItemGroup>
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="copy &quot;C:\Users\blanc\OneDrive\Desktop\ZeldaAssets\Music\FmodProj\Build\Desktop\master.bank&quot; &quot;C:\Users\blanc\OneDrive - Supergoon Games\src\xna\zeldaXna\MultiplayerZelda\Content\Sound\Master.bank&quot;&#xD;&#xA;copy &quot;C:\Users\blanc\OneDrive\Desktop\ZeldaAssets\Music\FmodProj\Build\Desktop\master.strings.bank&quot; &quot;C:\Users\blanc\OneDrive - Supergoon Games\src\xna\zeldaXna\MultiplayerZelda\Content\Sound\Master.strings.bank&quot;" />
+  </Target>
 </Project>

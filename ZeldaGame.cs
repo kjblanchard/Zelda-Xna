@@ -12,11 +12,6 @@ namespace MultiplayerZelda
 {
     public class ZeldaGame : ExtendedGame
     {
-        private List<Bank> _banks = new List<Bank>();
-
-        private Bank masterMank;
-        private Bank masterBankString;
-
 
         public ZeldaGame()
         {
@@ -33,8 +28,8 @@ namespace MultiplayerZelda
 
         protected override void LoadContent()
         {
-            int bois;
-
+            base.LoadContent();
+            SoundSystem.PlayBgm(ZeldaMusic.TitleTheme);
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
@@ -45,6 +40,7 @@ namespace MultiplayerZelda
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             base.Update(gameTime);
+
         }
         
 
