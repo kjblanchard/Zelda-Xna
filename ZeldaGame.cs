@@ -29,10 +29,12 @@ namespace MultiplayerZelda
         protected override void LoadContent()
         {
             base.LoadContent();
-            SoundSystem.PlayBgm(ZeldaMusic.TitleTheme);
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
+        }
 
-            // TODO: use this.Content to load your game content here
+        protected override void BeginRun()
+        {
+            base.BeginRun();
+            SoundSystem.PlayBgm(ZeldaMusic.TitleTheme);
         }
 
         protected override void Update(GameTime gameTime)
@@ -47,10 +49,7 @@ namespace MultiplayerZelda
         protected override void Draw(GameTime gameTime)
         {
 
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            // TODO: Add your drawing code here
-
+            GraphicsDevice.Clear(Color.Black);
             base.Draw(gameTime);
 
         }
