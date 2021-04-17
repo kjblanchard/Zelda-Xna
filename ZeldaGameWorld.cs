@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SgEngine.EKS;
 
@@ -26,7 +27,7 @@ namespace MultiplayerZelda
         protected override void LoadContent()
         {
             base.LoadContent();
-            
+
         }
 
         protected override void BeginRun()
@@ -43,14 +44,14 @@ namespace MultiplayerZelda
             _zeldaLevel.Update(gameTime);
 
         }
-        
+
 
         protected override void Draw(GameTime gameTime)
         {
 
             base.Draw(gameTime);
             GraphicsDevice.Clear(Color.Black);
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
             _zeldaLevel.Draw(gameTime,_spriteBatch);
             _spriteBatch.End();
 
