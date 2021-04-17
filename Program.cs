@@ -7,7 +7,7 @@ namespace MultiplayerZelda
         [STAThread]
         static void Main()
         {
-            using (var game = new ZeldaGame())
+            using (var game = new ZeldaGameWorld())
                 game.Run();
         }
     }

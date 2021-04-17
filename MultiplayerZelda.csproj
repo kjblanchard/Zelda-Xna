@@ -50,6 +50,6 @@
     <ProjectReference Include="..\SgEngine\SgEngine.csproj" />
   </ItemGroup>
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="copy &quot;C:\Users\blanc\OneDrive\Desktop\ZeldaAssets\Music\FmodProj\Build\Desktop\master.bank&quot; &quot;C:\Users\blanc\OneDrive - Supergoon Games\src\xna\zeldaXna\MultiplayerZelda\Content\Sound\Master.bank&quot;&#xD;&#xA;copy &quot;C:\Users\blanc\OneDrive\Desktop\ZeldaAssets\Music\FmodProj\Build\Desktop\master.strings.bank&quot; &quot;C:\Users\blanc\OneDrive - Supergoon Games\src\xna\zeldaXna\MultiplayerZelda\Content\Sound\Master.strings.bank&quot;" />
+    <Exec Command="copy &quot;C:\Users\blanc\OneDrive - Supergoon Games\GameAssets\ZeldaAssets\Music\FmodProj\Build\Desktop\master.bank&quot; &quot;C:\Users\blanc\OneDrive - Supergoon Games\src\xna\zeldaXna\MultiplayerZelda\Content\Sound\Master.bank&quot;&#xD;&#xA;copy &quot;C:\Users\blanc\OneDrive - Supergoon Games\GameAssets\ZeldaAssets\Music\FmodProj\Build\Desktop\master.strings.bank&quot; &quot;C:\Users\blanc\OneDrive - Supergoon Games\src\xna\zeldaXna\MultiplayerZelda\Content\Sound\Master.strings.bank&quot;" />
   </Target>
 </Project>

@@ -1,40 +1,38 @@
-﻿using System.Collections.Generic;
-using System.Runtime.InteropServices.ComTypes;
-using FMOD.Studio;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using MultiplayerZelda.Utils.Enums;
-using SgEngine.Core;
-using SgEngine.Core.Sounds;
+using SgEngine.EKS;
 
 namespace MultiplayerZelda
 {
-    public class ZeldaGame : ExtendedGame
+    /// <summary>
+    /// The Zelda game world.  This holds the graphics, as well as others.  Inherits from the XNA gameworld class
+    /// </summary>
+    public class ZeldaGameWorld : GameWorld
     {
+        private ZeldaLevel _zeldaLevel;
 
-        public ZeldaGame()
+        public ZeldaGameWorld()
         {
-
+            _zeldaLevel = new ZeldaLevel();
 
         }
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
             base.Initialize();
+            _zeldaLevel.Initialize();
         }
 
         protected override void LoadContent()
         {
             base.LoadContent();
+            
         }
 
         protected override void BeginRun()
         {
             base.BeginRun();
-            SoundSystem.PlayBgm(ZeldaMusic.TitleTheme);
+            _zeldaLevel.BeginRun();
         }
 
         protected override void Update(GameTime gameTime)
@@ -42,6 +40,7 @@ namespace MultiplayerZelda
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             base.Update(gameTime);
+            _zeldaLevel.Update(gameTime);
 
         }
         
@@ -49,8 +48,11 @@ namespace MultiplayerZelda
         protected override void Draw(GameTime gameTime)
         {
 
-            GraphicsDevice.Clear(Color.Black);
             base.Draw(gameTime);
+            GraphicsDevice.Clear(Color.Black);
+            _spriteBatch.Begin();
+            _zeldaLevel.Draw(gameTime,_spriteBatch);
+            _spriteBatch.End();
 
         }
     }

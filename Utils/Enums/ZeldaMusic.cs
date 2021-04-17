@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MultiplayerZelda.Utils.Enums
 {
-    enum ZeldaMusic
+    public enum ZeldaMusic
     {
         TitleTheme = 0,
         MenuTheme = 1
