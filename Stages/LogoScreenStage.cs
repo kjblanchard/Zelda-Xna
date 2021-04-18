@@ -16,16 +16,16 @@ namespace MultiplayerZelda.Stages
         /// </summary>
         private Logos _greenRangerLogo;
 
-        private Timer _testingTimers;
+        private SingleFunctionTimer _testingTimers;
         private TweenTimer _testingTweenTimer;
-        private Timer _testingMoveTimer;
+        private SingleFunctionTimer _testingMoveTimer;
 
         public override void Initialize()
         {
             base.Initialize();
             _greenRangerLogo = new Logos(new Rectangle(0, 0, 250, 250), "Graphics/Logos/KjbLogo");
             _greenRangerLogo.Initialize();
-            _testingTimers = new Timer(2000, AlphaLogoTest);
+            _testingTimers = new SingleFunctionTimer(2000, AlphaLogoTest);
         }
 
         public override void BeginRun()
@@ -71,7 +71,7 @@ namespace MultiplayerZelda.Stages
         private void MoveLogoAfterTime()
         {
 
-            _testingMoveTimer = new Timer(100, MoveLogo);
+            _testingMoveTimer = new SingleFunctionTimer(100, MoveLogo);
         }
 
         private void ReduceAlphaOverTime(float valueToUpdate)
