@@ -20,23 +20,25 @@ namespace MultiplayerZelda.Stages
         private Logos _greenRangerLogo;
 
         private Timer _testingTimers;
+        private TweenTimer _testingTweenTimer;
         public LogoScreenStage() : base()
         {
 
         }
 
-        private void MoveLogoTest()
+        private void AlphaLogoTest()
         {
-            var temploc = _greenRangerLogo.LocalPosition;
-            temploc.X += 5;
-            _greenRangerLogo.LocalPosition = temploc;
+
+            var component = _greenRangerLogo.GetComponent(EngineComponentTypes.SpriteComponent);
+            var convertedComp = (SpriteComponent) (component);
+            _testingTweenTimer = new TweenTimer(convertedComp.Opacity, 0, 1000, ReduceAlphaOverTime);
         }
 
-        private void AlphaLogoTest()
+        private void ReduceAlphaOverTime(float valueToUpdate)
         {
             var component = _greenRangerLogo.GetComponent(EngineComponentTypes.SpriteComponent);
             var convertedComp = (SpriteComponent) (component);
-            convertedComp.Opacity = .50f;
+            convertedComp.Opacity = valueToUpdate;
         }
         public override void Initialize()
         {
@@ -52,6 +54,7 @@ namespace MultiplayerZelda.Stages
         public override void Update(GameTime gameTime)
         {
             _testingTimers.Update(gameTime);
+            _testingTweenTimer?.Update(gameTime);
         }
 
         public override void LoadContent()
