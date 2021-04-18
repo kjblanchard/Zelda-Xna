@@ -12,7 +12,7 @@ namespace MultiplayerZelda
 {
     class ZeldaLevel : IUpdate
     {
-        private ZeldaStageMachine _zeldaStageMachine;
+        private readonly ZeldaStageMachine _zeldaStageMachine;
 
         public ZeldaLevel()
         {

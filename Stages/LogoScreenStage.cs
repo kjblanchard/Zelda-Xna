@@ -1,12 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MultiplayerZelda.BaseClasses;
-using System.Diagnostics;
 using MultiplayerZelda.Utils.Enums;
 using SgEngine.Components;
 using SgEngine.Core;
-using SgEngine.Interfaces;
-
 namespace MultiplayerZelda.Stages
 {
     /// <summary>
@@ -16,17 +13,12 @@ namespace MultiplayerZelda.Stages
     {
         /// <summary>
         /// The kjb green ranger logo that should be shown
-        /// </summarjy>
+        /// </summary>
         private Logos _greenRangerLogo;
 
         private Timer _testingTimers;
         private TweenTimer _testingTweenTimer;
         private Timer _testingMoveTimer;
-
-        public LogoScreenStage() : base()
-        {
-
-        }
 
         public override void Initialize()
         {

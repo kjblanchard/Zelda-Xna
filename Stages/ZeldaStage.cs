@@ -10,6 +10,7 @@ namespace MultiplayerZelda.Stages
 {
     /// <summary>
     /// The base class for all zelda stages.  Gives you some default methods and a sound system
+    /// it's also a IState, and controlled by a statemachine
     /// </summary>
     public class ZeldaStage : IState
     {
