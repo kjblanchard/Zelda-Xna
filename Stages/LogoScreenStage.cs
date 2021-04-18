@@ -21,40 +21,32 @@ namespace MultiplayerZelda.Stages
 
         private Timer _testingTimers;
         private TweenTimer _testingTweenTimer;
+        private Timer _testingMoveTimer;
+
         public LogoScreenStage() : base()
         {
 
         }
 
-        private void AlphaLogoTest()
-        {
-
-            var component = _greenRangerLogo.GetComponent(EngineComponentTypes.SpriteComponent);
-            var convertedComp = (SpriteComponent) (component);
-            _testingTweenTimer = new TweenTimer(convertedComp.Opacity, 0, 1000, ReduceAlphaOverTime);
-        }
-
-        private void ReduceAlphaOverTime(float valueToUpdate)
-        {
-            var component = _greenRangerLogo.GetComponent(EngineComponentTypes.SpriteComponent);
-            var convertedComp = (SpriteComponent) (component);
-            convertedComp.Opacity = valueToUpdate;
-        }
         public override void Initialize()
         {
             base.Initialize();
-            Debug.WriteLine("going to the store");
-
             _greenRangerLogo = new Logos(new Rectangle(0, 0, 250, 250), "Graphics/Logos/KjbLogo");
             _greenRangerLogo.Initialize();
-            PlayBgm(ZeldaMusic.TitleTheme);
             _testingTimers = new Timer(2000, AlphaLogoTest);
+        }
+
+        public override void BeginRun()
+        {
+
+            PlayBgm(ZeldaMusic.TitleTheme);
         }
 
         public override void Update(GameTime gameTime)
         {
             _testingTimers.Update(gameTime);
             _testingTweenTimer?.Update(gameTime);
+            _testingMoveTimer?.Update(gameTime);
         }
 
         public override void LoadContent()
@@ -67,6 +59,34 @@ namespace MultiplayerZelda.Stages
         {
             _greenRangerLogo.Draw(gameTime, spriteBatch);
         }
+        private void MoveLogo()
+        {
 
+            var component = _greenRangerLogo.GetComponent(EngineComponentTypes.SpriteComponent);
+            var convertedComp = (SpriteComponent)(component);
+            convertedComp.Opacity = 1f;
+            _greenRangerLogo.LocalPosition = Vector2.Add(_greenRangerLogo.LocalPosition, new Vector2(50, 0));
+        }
+
+        private void AlphaLogoTest()
+        {
+
+            var component = _greenRangerLogo.GetComponent(EngineComponentTypes.SpriteComponent);
+            var convertedComp = (SpriteComponent)(component);
+            _testingTweenTimer = new TweenTimer(convertedComp.Opacity, 0, 100, ReduceAlphaOverTime, MoveLogoAfterTime);
+        }
+
+        private void MoveLogoAfterTime()
+        {
+
+            _testingMoveTimer = new Timer(100, MoveLogo);
+        }
+
+        private void ReduceAlphaOverTime(float valueToUpdate)
+        {
+            var component = _greenRangerLogo.GetComponent(EngineComponentTypes.SpriteComponent);
+            var convertedComp = (SpriteComponent)(component);
+            convertedComp.Opacity = valueToUpdate;
+        }
     }
 }

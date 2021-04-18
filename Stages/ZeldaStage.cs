@@ -28,6 +28,10 @@ namespace MultiplayerZelda.Stages
         {
         }
 
+        public virtual void BeginRun()
+        {
+        }
+
         public virtual void Update(GameTime gameTime)
         {
         }
