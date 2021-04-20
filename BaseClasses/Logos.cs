@@ -14,7 +14,7 @@ namespace MultiplayerZelda.BaseClasses
 {
     public class Logos : GameObject
     {
-        
+
     #region State
 
     private SpriteComponent _spriteComponent;

@@ -4,6 +4,8 @@ using MultiplayerZelda.BaseClasses;
 using MultiplayerZelda.Utils.Enums;
 using SgEngine.Components;
 using SgEngine.Core;
+using SgEngine.Models;
+
 namespace MultiplayerZelda.Stages
 {
     /// <summary>
@@ -15,7 +17,6 @@ namespace MultiplayerZelda.Stages
         /// The kjb green ranger logo that should be shown
         /// </summary>
         private Logos _greenRangerLogo;
-
         private SingleFunctionTimer _testingTimers;
         private TweenTimer _testingTweenTimer;
         private SingleFunctionTimer _testingMoveTimer;
@@ -23,7 +24,7 @@ namespace MultiplayerZelda.Stages
         public override void Initialize()
         {
             base.Initialize();
-            _greenRangerLogo = new Logos(new Rectangle(0, 0, 250, 250), "Graphics/Logos/KjbLogo");
+            _greenRangerLogo = new Logos(new Rectangle(ZeldaGameWorld._baseConfig.Window.X/2, ZeldaGameWorld._baseConfig.Window.Y/2, 250, 500), "Graphics/Logos/KjbLogo");
             _greenRangerLogo.Initialize();
             _testingTimers = new SingleFunctionTimer(2000, AlphaLogoTest);
         }
