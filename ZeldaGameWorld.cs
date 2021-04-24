@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using SgEngine.Core;
 using SgEngine.EKS;
 
 namespace MultiplayerZelda
@@ -22,6 +23,7 @@ namespace MultiplayerZelda
         {
             base.Initialize();
             _zeldaLevel.Initialize();
+            _contentLoader = new ContentLoader(Content, ZeldaGraphicsDictionary.GameGraphicsDictionary);
         }
 
         protected override void LoadContent()

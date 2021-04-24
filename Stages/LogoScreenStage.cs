@@ -24,7 +24,10 @@ namespace MultiplayerZelda.Stages
         public override void Initialize()
         {
             base.Initialize();
-            _greenRangerLogo = new Logos(new Rectangle(ZeldaGameWorld._baseConfig.Window.X/2, ZeldaGameWorld._baseConfig.Window.Y/2, 250, 500), "Graphics/Logos/KjbLogo");
+            _greenRangerLogo =
+                new Logos(
+                    new Rectangle(ZeldaGameWorld._baseConfig.Window.X / 2, ZeldaGameWorld._baseConfig.Window.Y / 2, 250,
+                        500), ZeldaGraphics.GreenRangerLogo);
             _greenRangerLogo.Initialize();
             _testingTimers = new SingleFunctionTimer(2000, AlphaLogoTest);
         }

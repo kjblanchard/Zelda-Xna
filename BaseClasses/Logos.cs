@@ -5,6 +5,7 @@
 //
 ////////////////////////////////////////////////////////////
 
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SgEngine.Components;
@@ -22,7 +23,7 @@ namespace MultiplayerZelda.BaseClasses
 
     #region Constructor
 
-    public Logos(Rectangle locationAndSize, string spriteToLoad)
+    public Logos(Rectangle locationAndSize, Enum spriteToLoad)
     {
         _spriteComponent = new SpriteComponent(this, spriteToLoad,new Rectangle(Point.Zero, locationAndSize.Size));
         _localPosition = locationAndSize.Location.ToVector2();
