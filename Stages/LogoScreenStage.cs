@@ -61,7 +61,7 @@ namespace MultiplayerZelda.Stages
             var component = _greenRangerLogo.GetComponent(EngineComponentTypes.SpriteComponent);
             var convertedComp = (SpriteComponent)(component);
             convertedComp.Opacity = 1f;
-            _greenRangerLogo.LocalPosition = Vector2.Add(_greenRangerLogo.LocalPosition, new Vector2(50, 0));
+            _greenRangerLogo.LocalPosition = Vector2.Add(_greenRangerLogo.LocalPosition, new Vector2(0, 0));
         }
 
         private void AlphaLogoTest()
