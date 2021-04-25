@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MultiplayerZelda.BaseClasses;
 using MultiplayerZelda.Utils.Enums;
 using SgEngine.Core.Sounds;
 using SgEngine.EKS;
@@ -15,6 +16,7 @@ namespace MultiplayerZelda.Stages
     public class ZeldaStage : IState
     {
         private static SoundSystem _soundSystem;
+        protected GameObjectList<Logos> _gameObjectList = new GameObjectList<Logos>();
 
         public ZeldaStage()
         {

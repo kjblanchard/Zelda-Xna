@@ -17,10 +17,6 @@ namespace MultiplayerZelda.Stages
         /// The kjb green ranger logo that should be shown
         /// </summary>
         private Logos _greenRangerLogo;
-        private SingleFunctionTimer _testingTimers;
-        private TweenTimer _testingTweenTimer;
-        private SingleFunctionTimer _testingMoveTimer;
-
         public override void Initialize()
         {
             base.Initialize();
@@ -29,7 +25,7 @@ namespace MultiplayerZelda.Stages
                     new Rectangle(ZeldaGameWorld._baseConfig.Window.X / 2, ZeldaGameWorld._baseConfig.Window.Y / 2, 250,
                         500), ZeldaGraphics.GreenRangerLogo);
             _greenRangerLogo.Initialize();
-            _testingTimers = new SingleFunctionTimer(2000, AlphaLogoTest);
+            _greenRangerLogo.AddTimer(new SingleFunctionTimer(2000, AlphaLogoTest));
         }
 
         public override void BeginRun()
@@ -40,9 +36,7 @@ namespace MultiplayerZelda.Stages
 
         public override void Update(GameTime gameTime)
         {
-            _testingTimers.Update(gameTime);
-            _testingTweenTimer?.Update(gameTime);
-            _testingMoveTimer?.Update(gameTime);
+            _greenRangerLogo.Update(gameTime);
         }
 
         public override void LoadContent()
@@ -61,7 +55,7 @@ namespace MultiplayerZelda.Stages
             var component = _greenRangerLogo.GetComponent(EngineComponentTypes.SpriteComponent);
             var convertedComp = (SpriteComponent)(component);
             convertedComp.Opacity = 1f;
-            _greenRangerLogo.LocalPosition = Vector2.Add(_greenRangerLogo.LocalPosition, new Vector2(0, 0));
+            _greenRangerLogo.LocalPosition = Vector2.Add(_greenRangerLogo.LocalPosition, new Vector2(50, 0));
         }
 
         private void AlphaLogoTest()
@@ -69,13 +63,13 @@ namespace MultiplayerZelda.Stages
 
             var component = _greenRangerLogo.GetComponent(EngineComponentTypes.SpriteComponent);
             var convertedComp = (SpriteComponent)(component);
-            _testingTweenTimer = new TweenTimer(convertedComp.Opacity, 0, 100, ReduceAlphaOverTime, MoveLogoAfterTime);
+            _greenRangerLogo.AddTimer(new TweenTimer(convertedComp.Opacity, 0, 1000, ReduceAlphaOverTime, MoveLogoAfterTime));
         }
 
         private void MoveLogoAfterTime()
         {
 
-            _testingMoveTimer = new SingleFunctionTimer(100, MoveLogo);
+            _greenRangerLogo.AddTimer(new SingleFunctionTimer(100, MoveLogo));
         }
 
         private void ReduceAlphaOverTime(float valueToUpdate)

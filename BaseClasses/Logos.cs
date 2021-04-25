@@ -44,6 +44,11 @@ namespace MultiplayerZelda.BaseClasses
         _spriteComponent.Draw(gameTime,spriteBatch);
     }
 
+    public override void Update(GameTime gameTime)
+    {
+        base.Update(gameTime);
+    }
+
     #endregion
     }
 
