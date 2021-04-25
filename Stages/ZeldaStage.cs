@@ -42,6 +42,7 @@ namespace MultiplayerZelda.Stages
 
         public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
+            _gameObjectList.Draw(gameTime,spriteBatch);
         }
 
         /// <summary>

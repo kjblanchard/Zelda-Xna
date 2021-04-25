@@ -49,8 +49,7 @@ namespace MultiplayerZelda.Stages
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            _gameObjectList.Draw(gameTime,spriteBatch);
-            //_greenRangerLogo.Draw(gameTime, spriteBatch);
+            base.Draw(gameTime,spriteBatch);
         }
         private void MoveLogo(Logos logoToModify)
         {
@@ -69,8 +68,8 @@ namespace MultiplayerZelda.Stages
             var tweenComponent = gameObjectToModify.GetComponent(EngineComponentTypes.TweeningComponent);
             var convertedTween = (TweeningComponent) (tweenComponent);
             var tweener = new Tweener();
-            tweener.TweenTo(convertedComp, opacity => convertedComp.Opacity, 0, 2, 0)
-                .Easing(EasingFunctions.SineIn)
+            tweener.TweenTo(convertedComp, opacity => convertedComp.Opacity, 0, 3, 0)
+                .Easing(EasingFunctions.Linear)
                 .OnEnd(tween =>
                 {
                     Debug.WriteLine("it's over");
