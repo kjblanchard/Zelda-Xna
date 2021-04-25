@@ -24,7 +24,7 @@ namespace MultiplayerZelda.Stages
         }
         public virtual void Initialize()
         {
-
+            _gameObjectList.Initialize();
         }
 
         public virtual void LoadContent()
@@ -37,6 +37,7 @@ namespace MultiplayerZelda.Stages
 
         public virtual void Update(GameTime gameTime)
         {
+            _gameObjectList.Update(gameTime);
         }
 
         public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)

@@ -16,40 +16,44 @@ namespace MultiplayerZelda.BaseClasses
     public class Logos : GameObject
     {
 
-    #region State
+        #region State
 
-    private SpriteComponent _spriteComponent;
-    #endregion
+        private SpriteComponent _spriteComponent;
+        private TweeningComponent _tweeningComponent;
+        #endregion
 
-    #region Constructor
+        #region Constructor
 
-    public Logos(Rectangle locationAndSize, Enum spriteToLoad)
-    {
-        _spriteComponent = new SpriteComponent(this, spriteToLoad,new Rectangle(Point.Zero, locationAndSize.Size));
-        _localPosition = locationAndSize.Location.ToVector2();
-        AddComponent(_spriteComponent);
-    }
+        public Logos(Rectangle locationAndSize, Enum spriteToLoad)
+        {
+            _spriteComponent = new SpriteComponent(this, spriteToLoad, new Rectangle(Point.Zero, locationAndSize.Size));
+            _tweeningComponent = new TweeningComponent(this);
+            _localPosition = locationAndSize.Location.ToVector2();
+            AddComponent(_spriteComponent);
+            AddComponent(_tweeningComponent);
+        }
 
-    #endregion
+        #endregion
 
-    #region Functions
+        #region Functions
 
-    public override void Initialize()
-    {
-        _spriteComponent.Initialize();
-    }
+        public override void Initialize()
+        {
+            _spriteComponent.Initialize();
+        }
 
-    public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
-    {
-        _spriteComponent.Draw(gameTime,spriteBatch);
-    }
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            _spriteComponent.Draw(gameTime, spriteBatch);
+        }
 
-    public override void Update(GameTime gameTime)
-    {
-        base.Update(gameTime);
-    }
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+            _tweeningComponent.Update(gameTime);
+        }
 
-    #endregion
+        #endregion
     }
 
 }

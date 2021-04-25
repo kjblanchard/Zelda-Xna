@@ -1,10 +1,12 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Diagnostics;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MultiplayerZelda.BaseClasses;
 using MultiplayerZelda.Utils.Enums;
 using SgEngine.Components;
 using SgEngine.Core;
-using SgEngine.Models;
+using SgEngine.EKS;
+using MonoGame.Extended.Tweening;
 
 namespace MultiplayerZelda.Stages
 {
@@ -16,16 +18,16 @@ namespace MultiplayerZelda.Stages
         /// <summary>
         /// The kjb green ranger logo that should be shown
         /// </summary>
-        private Logos _greenRangerLogo;
+        //private Logos _greenRangerLogo;
         public override void Initialize()
         {
             base.Initialize();
-            _greenRangerLogo =
+            var _greenRangerLogo =
                 new Logos(
                     new Rectangle(ZeldaGameWorld._baseConfig.Window.X / 2, ZeldaGameWorld._baseConfig.Window.Y / 2, 250,
                         500), ZeldaGraphics.GreenRangerLogo);
-            _greenRangerLogo.Initialize();
-            _greenRangerLogo.AddTimer(new SingleFunctionTimer(2000, AlphaLogoTest));
+            _greenRangerLogo.AddTimer(new SingleFunctionTimer(2000,_greenRangerLogo, AlphaLogoTest));
+            _gameObjectList.AddGameObject(_greenRangerLogo);
         }
 
         public override void BeginRun()
@@ -36,7 +38,7 @@ namespace MultiplayerZelda.Stages
 
         public override void Update(GameTime gameTime)
         {
-            _greenRangerLogo.Update(gameTime);
+            base.Update(gameTime);
         }
 
         public override void LoadContent()
@@ -47,34 +49,46 @@ namespace MultiplayerZelda.Stages
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            _greenRangerLogo.Draw(gameTime, spriteBatch);
+            _gameObjectList.Draw(gameTime,spriteBatch);
+            //_greenRangerLogo.Draw(gameTime, spriteBatch);
         }
-        private void MoveLogo()
+        private void MoveLogo(Logos logoToModify)
         {
 
-            var component = _greenRangerLogo.GetComponent(EngineComponentTypes.SpriteComponent);
+            var component = logoToModify.GetComponent(EngineComponentTypes.SpriteComponent);
             var convertedComp = (SpriteComponent)(component);
             convertedComp.Opacity = 1f;
-            _greenRangerLogo.LocalPosition = Vector2.Add(_greenRangerLogo.LocalPosition, new Vector2(50, 0));
+            logoToModify.LocalPosition = Vector2.Add(logoToModify.LocalPosition, new Vector2(50, 0));
         }
 
-        private void AlphaLogoTest()
+        private void AlphaLogoTest(GameObject gameObjectToModify)
         {
 
-            var component = _greenRangerLogo.GetComponent(EngineComponentTypes.SpriteComponent);
+            var component = gameObjectToModify.GetComponent(EngineComponentTypes.SpriteComponent);
             var convertedComp = (SpriteComponent)(component);
-            _greenRangerLogo.AddTimer(new TweenTimer(convertedComp.Opacity, 0, 1000, ReduceAlphaOverTime, MoveLogoAfterTime));
+            var tweenComponent = gameObjectToModify.GetComponent(EngineComponentTypes.TweeningComponent);
+            var convertedTween = (TweeningComponent) (tweenComponent);
+            var tweener = new Tweener();
+            tweener.TweenTo(convertedComp, opacity => convertedComp.Opacity, 0, 2, 0)
+                .Easing(EasingFunctions.SineIn)
+                .OnEnd(tween =>
+                {
+                    Debug.WriteLine("it's over");
+                    convertedTween.TweenEnd(tweener);
+                });
+            convertedTween.AddTween(tweener);
+            //logoToModify.AddTimer(new TweenTimer<Logos>(convertedComp.Opacity, 0, 1000, ReduceAlphaOverTime, MoveLogoAfterTime));
         }
 
-        private void MoveLogoAfterTime()
+        private void MoveLogoAfterTime(Logos logoToModify)
         {
 
-            _greenRangerLogo.AddTimer(new SingleFunctionTimer(100, MoveLogo));
+            //logoToModify.AddTimer(new SingleFunctionTimer(100, MoveLogo(logoToModify)));
         }
 
-        private void ReduceAlphaOverTime(float valueToUpdate)
+        private void ReduceAlphaOverTime(Logos logoToModify, float valueToUpdate)
         {
-            var component = _greenRangerLogo.GetComponent(EngineComponentTypes.SpriteComponent);
+            var component = logoToModify.GetComponent(EngineComponentTypes.SpriteComponent);
             var convertedComp = (SpriteComponent)(component);
             convertedComp.Opacity = valueToUpdate;
         }
