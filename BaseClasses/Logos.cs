@@ -18,19 +18,19 @@ namespace MultiplayerZelda.BaseClasses
 
         #region State
 
-        private SpriteComponent _spriteComponent;
-        private TweeningComponent _tweeningComponent;
+        public SpriteComponent SpriteComponent;
+        public TweeningComponent TweeningComponent;
         #endregion
 
         #region Constructor
 
         public Logos(Rectangle locationAndSize, Enum spriteToLoad)
         {
-            _spriteComponent = new SpriteComponent(this, spriteToLoad, new Rectangle(Point.Zero, locationAndSize.Size));
-            _tweeningComponent = new TweeningComponent(this);
+            SpriteComponent = new SpriteComponent(this, spriteToLoad, new Rectangle(Point.Zero, locationAndSize.Size));
+            TweeningComponent = new TweeningComponent(this);
             _localPosition = locationAndSize.Location.ToVector2();
-            AddComponent(_spriteComponent);
-            AddComponent(_tweeningComponent);
+            AddComponent(SpriteComponent);
+            AddComponent(TweeningComponent);
         }
 
         #endregion
@@ -39,18 +39,18 @@ namespace MultiplayerZelda.BaseClasses
 
         public override void Initialize()
         {
-            _spriteComponent.Initialize();
+            SpriteComponent.Initialize();
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            _spriteComponent.Draw(gameTime, spriteBatch);
+            SpriteComponent.Draw(gameTime, spriteBatch);
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            _tweeningComponent.Update(gameTime);
+            TweeningComponent.Update(gameTime);
         }
 
         #endregion

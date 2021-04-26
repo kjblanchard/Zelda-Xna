@@ -14,30 +14,39 @@ namespace MultiplayerZelda.Stages
     /// This is the Screen that shows all of our logos for the game
     /// </summary>
     /// <summary>
-        /// Changes Opacity
-        /// </summary>
-        /// <param name="gameObjectToModify"></param>
-        /// <param name="timeToWait"></param>
+    /// Changes Opacity
+    /// </summary>
+    /// <param name="gameObjectToModify"></param>
+    /// <param name="timeToWait"></param>
     public class LogoScreenStage : ZeldaStage
     {
         /// <summary>
         /// The kjb green ranger logo that should be shown
         /// </summary>
-        //private Logos _greenRangerLogo;
+        private Logos _greenRangerLogo;
+        private Point _greenRangerSize = new Point(250, 500);
+        private Logos _superGoonLogo;
+        private Point _superGoonLogoSize = new Point(600, 600);
+
         public override void Initialize()
         {
             base.Initialize();
-            var greenRangerLogo =
-                new Logos(
-                    new Rectangle(GameWorld._baseConfig.Window.X / 2, GameWorld._baseConfig.Window.Y / 2, 250,
-                        500), ZeldaGraphics.GreenRangerLogo);
-            greenRangerLogo.AddTimer(new MultiPurposeTimer(2000, ReduceAlphaOverTime,greenRangerLogo,2.0f));
-            var supergoonLogo = new Logos(new Rectangle(GameWorld._baseConfig.Window.X/2,GameWorld._baseConfig.Window.Y/2,500,500),ZeldaGraphics.SuperGoonLogo) ;
-            var supergoonSprite = supergoonLogo.GetComponent<SpriteComponent>(EngineComponentTypes.SpriteComponent);
-            supergoonSprite.Opacity = 0;
-            supergoonLogo.AddTimer(new MultiPurposeTimer(4000,AddAlphaOverTime,supergoonLogo,2));
-            _gameObjectList.AddGameObject(greenRangerLogo);
-            _gameObjectList.AddGameObject(supergoonLogo);
+            CreateLogos();
+            AddLogosToGameObjectList();
+        }
+
+        private void CreateLogos()
+        {
+            _greenRangerLogo = new Logos(new Rectangle(GameWorld.WindowCenter, _greenRangerSize), ZeldaGraphics.GreenRangerLogo);
+            _superGoonLogo = new Logos(new Rectangle(GameWorld.WindowCenter, _superGoonLogoSize), ZeldaGraphics.SuperGoonLogo);
+            _greenRangerLogo.AddTimer(new MultiPurposeTimer(2000, DisplayLogos, _greenRangerLogo, 2.0f));
+            _superGoonLogo.SpriteComponent.Opacity = 0;
+        }
+
+        private void AddLogosToGameObjectList()
+        {
+            _gameObjectList.AddGameObject(_greenRangerLogo);
+            _gameObjectList.AddGameObject(_superGoonLogo);
         }
 
         public override void BeginRun()
@@ -53,7 +62,7 @@ namespace MultiplayerZelda.Stages
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            base.Draw(gameTime,spriteBatch);
+            base.Draw(gameTime, spriteBatch);
         }
 
         /// <summary>
@@ -61,35 +70,28 @@ namespace MultiplayerZelda.Stages
         /// </summary>
         /// <param name="gameObjectToModify"></param>
         /// <param name="timeToWait"></param>
-        private void ReduceAlphaOverTime(GameObject gameObjectToModify, float timeToWait)
+        private void DisplayLogos(GameObject gameObjectToModify, float timeToWait)
         {
 
-            var spriteComponent = gameObjectToModify.GetComponent<SpriteComponent>(EngineComponentTypes.SpriteComponent);
-            var tweenComponent = gameObjectToModify.GetComponent<TweeningComponent>(EngineComponentTypes.TweeningComponent);
             var tweener = new Tweener();
-            tweener.TweenTo(spriteComponent, opacity => spriteComponent.Opacity, 0, timeToWait, 0)
+            tweener.TweenTo(_greenRangerLogo.SpriteComponent, opacity => _greenRangerLogo.SpriteComponent.Opacity, 0, timeToWait, 0)
                 .Easing(EasingFunctions.Linear)
                 .OnEnd(tween =>
                 {
-                    tweenComponent.TweenEnd(tweener);
+                    _greenRangerLogo.TweeningComponent.TweenEnd(tweener);
+                    var sgTweener = new Tweener();
+                    sgTweener.TweenTo(_superGoonLogo.SpriteComponent, opacity => _superGoonLogo.SpriteComponent.Opacity, 1.0f, 4 ,2.0f)
+                        .Easing(EasingFunctions.SineOut)
+                        .AutoReverse()
+                        .OnEnd(sgTween =>
+                        {
+                            _superGoonLogo.TweeningComponent.TweenEnd(sgTweener);
+                        })
+                        ;
+                    _superGoonLogo.TweeningComponent.AddTween(sgTweener);
                 });
-            tweenComponent.AddTween(tweener);
+            _superGoonLogo.TweeningComponent.AddTween(tweener);
         }
 
-
-        private void AddAlphaOverTime(GameObject gameObjectToModify, float timeToWait)
-        {
-
-            var spriteComponent = gameObjectToModify.GetComponent<SpriteComponent>(EngineComponentTypes.SpriteComponent);
-            var tweenComponent = gameObjectToModify.GetComponent<TweeningComponent>(EngineComponentTypes.TweeningComponent);
-            var tweener = new Tweener();
-            tweener.TweenTo(spriteComponent, opacity => spriteComponent.Opacity, 1, timeToWait, 0)
-                .Easing(EasingFunctions.Linear)
-                .OnEnd(tween =>
-                {
-                    tweenComponent.TweenEnd(tweener);
-                });
-            tweenComponent.AddTween(tweener);
-        }
     }
 }
