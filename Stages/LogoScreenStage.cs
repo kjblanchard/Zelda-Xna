@@ -13,6 +13,11 @@ namespace MultiplayerZelda.Stages
     /// <summary>
     /// This is the Screen that shows all of our logos for the game
     /// </summary>
+    /// <summary>
+        /// Changes Opacity
+        /// </summary>
+        /// <param name="gameObjectToModify"></param>
+        /// <param name="timeToWait"></param>
     public class LogoScreenStage : ZeldaStage
     {
         /// <summary>
@@ -27,7 +32,12 @@ namespace MultiplayerZelda.Stages
                     new Rectangle(GameWorld._baseConfig.Window.X / 2, GameWorld._baseConfig.Window.Y / 2, 250,
                         500), ZeldaGraphics.GreenRangerLogo);
             greenRangerLogo.AddTimer(new MultiPurposeTimer(2000, ReduceAlphaOverTime,greenRangerLogo,2.0f));
+            var supergoonLogo = new Logos(new Rectangle(GameWorld._baseConfig.Window.X/2,GameWorld._baseConfig.Window.Y/2,500,500),ZeldaGraphics.SuperGoonLogo) ;
+            var supergoonSprite = supergoonLogo.GetComponent<SpriteComponent>(EngineComponentTypes.SpriteComponent);
+            supergoonSprite.Opacity = 0;
+            supergoonLogo.AddTimer(new MultiPurposeTimer(4000,AddAlphaOverTime,supergoonLogo,2));
             _gameObjectList.AddGameObject(greenRangerLogo);
+            _gameObjectList.AddGameObject(supergoonLogo);
         }
 
         public override void BeginRun()
@@ -46,6 +56,11 @@ namespace MultiplayerZelda.Stages
             base.Draw(gameTime,spriteBatch);
         }
 
+        /// <summary>
+        /// Changes Opacity
+        /// </summary>
+        /// <param name="gameObjectToModify"></param>
+        /// <param name="timeToWait"></param>
         private void ReduceAlphaOverTime(GameObject gameObjectToModify, float timeToWait)
         {
 
@@ -56,11 +71,25 @@ namespace MultiplayerZelda.Stages
                 .Easing(EasingFunctions.Linear)
                 .OnEnd(tween =>
                 {
-                    Debug.WriteLine("it's over");
                     tweenComponent.TweenEnd(tweener);
                 });
             tweenComponent.AddTween(tweener);
         }
 
+
+        private void AddAlphaOverTime(GameObject gameObjectToModify, float timeToWait)
+        {
+
+            var spriteComponent = gameObjectToModify.GetComponent<SpriteComponent>(EngineComponentTypes.SpriteComponent);
+            var tweenComponent = gameObjectToModify.GetComponent<TweeningComponent>(EngineComponentTypes.TweeningComponent);
+            var tweener = new Tweener();
+            tweener.TweenTo(spriteComponent, opacity => spriteComponent.Opacity, 1, timeToWait, 0)
+                .Easing(EasingFunctions.Linear)
+                .OnEnd(tween =>
+                {
+                    tweenComponent.TweenEnd(tweener);
+                });
+            tweenComponent.AddTween(tweener);
+        }
     }
 }

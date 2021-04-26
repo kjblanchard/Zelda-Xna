@@ -15,6 +15,7 @@ namespace MultiplayerZelda
     public enum ZeldaGraphics
     {
         GreenRangerLogo = 0,
+        SuperGoonLogo = 1
 
     }
 
@@ -23,6 +24,7 @@ namespace MultiplayerZelda
         public static Spritesheet[] GameGraphicsDictionary =
         {
             new Spritesheet("Graphics/Logos/KjbLogo"),
+            new Spritesheet("Graphics/Logos/SggLogo")
         };
 
     }
