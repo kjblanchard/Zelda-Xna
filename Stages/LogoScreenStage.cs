@@ -22,12 +22,12 @@ namespace MultiplayerZelda.Stages
         public override void Initialize()
         {
             base.Initialize();
-            var _greenRangerLogo =
+            var greenRangerLogo =
                 new Logos(
-                    new Rectangle(ZeldaGameWorld._baseConfig.Window.X / 2, ZeldaGameWorld._baseConfig.Window.Y / 2, 250,
+                    new Rectangle(GameWorld._baseConfig.Window.X / 2, GameWorld._baseConfig.Window.Y / 2, 250,
                         500), ZeldaGraphics.GreenRangerLogo);
-            _greenRangerLogo.AddTimer(new SingleFunctionTimer(2000,_greenRangerLogo, AlphaLogoTest));
-            _gameObjectList.AddGameObject(_greenRangerLogo);
+            greenRangerLogo.AddTimer(new MultiPurposeTimer(2000, ReduceAlphaOverTime,greenRangerLogo,2.0f));
+            _gameObjectList.AddGameObject(greenRangerLogo);
         }
 
         public override void BeginRun()
@@ -41,55 +41,26 @@ namespace MultiplayerZelda.Stages
             base.Update(gameTime);
         }
 
-        public override void LoadContent()
-        {
-
-
-        }
-
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             base.Draw(gameTime,spriteBatch);
         }
-        private void MoveLogo(Logos logoToModify)
+
+        private void ReduceAlphaOverTime(GameObject gameObjectToModify, float timeToWait)
         {
 
-            var component = logoToModify.GetComponent(EngineComponentTypes.SpriteComponent);
-            var convertedComp = (SpriteComponent)(component);
-            convertedComp.Opacity = 1f;
-            logoToModify.LocalPosition = Vector2.Add(logoToModify.LocalPosition, new Vector2(50, 0));
-        }
-
-        private void AlphaLogoTest(GameObject gameObjectToModify)
-        {
-
-            var component = gameObjectToModify.GetComponent(EngineComponentTypes.SpriteComponent);
-            var convertedComp = (SpriteComponent)(component);
-            var tweenComponent = gameObjectToModify.GetComponent(EngineComponentTypes.TweeningComponent);
-            var convertedTween = (TweeningComponent) (tweenComponent);
+            var spriteComponent = gameObjectToModify.GetComponent<SpriteComponent>(EngineComponentTypes.SpriteComponent);
+            var tweenComponent = gameObjectToModify.GetComponent<TweeningComponent>(EngineComponentTypes.TweeningComponent);
             var tweener = new Tweener();
-            tweener.TweenTo(convertedComp, opacity => convertedComp.Opacity, 0, 3, 0)
+            tweener.TweenTo(spriteComponent, opacity => spriteComponent.Opacity, 0, timeToWait, 0)
                 .Easing(EasingFunctions.Linear)
                 .OnEnd(tween =>
                 {
                     Debug.WriteLine("it's over");
-                    convertedTween.TweenEnd(tweener);
+                    tweenComponent.TweenEnd(tweener);
                 });
-            convertedTween.AddTween(tweener);
-            //logoToModify.AddTimer(new TweenTimer<Logos>(convertedComp.Opacity, 0, 1000, ReduceAlphaOverTime, MoveLogoAfterTime));
+            tweenComponent.AddTween(tweener);
         }
 
-        private void MoveLogoAfterTime(Logos logoToModify)
-        {
-
-            //logoToModify.AddTimer(new SingleFunctionTimer(100, MoveLogo(logoToModify)));
-        }
-
-        private void ReduceAlphaOverTime(Logos logoToModify, float valueToUpdate)
-        {
-            var component = logoToModify.GetComponent(EngineComponentTypes.SpriteComponent);
-            var convertedComp = (SpriteComponent)(component);
-            convertedComp.Opacity = valueToUpdate;
-        }
     }
 }
