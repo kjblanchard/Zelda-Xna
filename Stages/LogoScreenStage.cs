@@ -7,6 +7,7 @@ using SgEngine.Components;
 using SgEngine.Core;
 using SgEngine.EKS;
 using MonoGame.Extended.Tweening;
+using SgEngine.Core.Input;
 
 namespace MultiplayerZelda.Stages
 {
@@ -27,6 +28,7 @@ namespace MultiplayerZelda.Stages
         private Point _greenRangerSize = new Point(250, 500);
         private Logos _superGoonLogo;
         private Point _superGoonLogoSize = new Point(600, 600);
+        private PlayerController _playerController = new PlayerController();
 
         public override void Initialize()
         {
@@ -58,6 +60,10 @@ namespace MultiplayerZelda.Stages
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            if (_playerController.IsButtonPressed(ControllerButtons.A))
+            {
+                Debug.WriteLine("button is pressed" + System.DateTime.Now);
+            }
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
