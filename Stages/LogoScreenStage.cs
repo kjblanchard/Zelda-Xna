@@ -35,6 +35,7 @@ namespace MultiplayerZelda.Stages
             base.Initialize();
             CreateLogos();
             AddLogosToGameObjectList();
+
         }
 
         private void CreateLogos()
