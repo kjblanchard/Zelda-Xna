@@ -25,10 +25,10 @@ namespace MultiplayerZelda.Stages
         /// The kjb green ranger logo that should be shown
         /// </summary>
         private Logos _greenRangerLogo;
-        private Point _greenRangerSize = new Point(250, 500);
+        private readonly Point _greenRangerSize = new Point(250, 500);
         private Logos _superGoonLogo;
-        private Point _superGoonLogoSize = new Point(600, 600);
-        private PlayerController _playerController = new PlayerController();
+        private readonly Point _superGoonLogoSize = new Point(600, 600);
+        private readonly PlayerController _playerController = new PlayerController();
 
         public override void Initialize()
         {
