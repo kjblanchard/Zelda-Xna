@@ -1,13 +1,9 @@
-﻿using System.Diagnostics;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MultiplayerZelda.BaseClasses;
 using MultiplayerZelda.Utils.Enums;
-using SgEngine.Components;
-using SgEngine.Core;
 using SgEngine.EKS;
 using MonoGame.Extended.Tweening;
-using SgEngine.Core.Input;
 
 namespace MultiplayerZelda.Stages
 {
@@ -28,7 +24,6 @@ namespace MultiplayerZelda.Stages
         private readonly Point _greenRangerSize = new Point(250, 500);
         private Logos _superGoonLogo;
         private readonly Point _superGoonLogoSize = new Point(600, 600);
-        private readonly PlayerController _playerController = new PlayerController();
 
         public override void Initialize()
         {
@@ -42,7 +37,7 @@ namespace MultiplayerZelda.Stages
         {
             _greenRangerLogo = new Logos(new Rectangle(GameWorld.WindowCenter, _greenRangerSize), ZeldaGraphics.GreenRangerLogo);
             _superGoonLogo = new Logos(new Rectangle(GameWorld.WindowCenter, _superGoonLogoSize), ZeldaGraphics.SuperGoonLogo);
-            _greenRangerLogo.AddTimer(new MultiPurposeTimer(2000, DisplayLogos, _greenRangerLogo, 2.0f));
+            _greenRangerLogo.SpriteComponent.Opacity = 0;
             _superGoonLogo.SpriteComponent.Opacity = 0;
         }
 
@@ -56,15 +51,12 @@ namespace MultiplayerZelda.Stages
         {
 
             PlayBgm(ZeldaMusic.TitleTheme);
+            StartLogoFadeIn();
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            if (_playerController.IsButtonPressed(ControllerButtons.A))
-            {
-                Debug.WriteLine("button is pressed" + System.DateTime.Now);
-            }
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -72,32 +64,57 @@ namespace MultiplayerZelda.Stages
             base.Draw(gameTime, spriteBatch);
         }
 
-        /// <summary>
-        /// Changes Opacity
-        /// </summary>
-        /// <param name="gameObjectToModify"></param>
-        /// <param name="timeToWait"></param>
-        private void DisplayLogos(GameObject gameObjectToModify, float timeToWait)
+        private void StartLogoFadeIn()
         {
-
-            var tweener = new Tweener();
-            tweener.TweenTo(_greenRangerLogo.SpriteComponent, opacity => _greenRangerLogo.SpriteComponent.Opacity, 0, timeToWait, 0)
+            var greenRangerTween = new Tweener();
+            greenRangerTween.TweenTo(_greenRangerLogo.SpriteComponent,
+                opacity => _greenRangerLogo.SpriteComponent.Opacity, 1.0f, 3.0f, 2)
                 .Easing(EasingFunctions.Linear)
                 .OnEnd(tween =>
                 {
-                    _greenRangerLogo.TweeningComponent.TweenEnd(tweener);
-                    var sgTweener = new Tweener();
-                    sgTweener.TweenTo(_superGoonLogo.SpriteComponent, opacity => _superGoonLogo.SpriteComponent.Opacity, 1.0f, 4 ,2.0f)
-                        .Easing(EasingFunctions.SineOut)
-                        .AutoReverse()
-                        .OnEnd(sgTween =>
-                        {
-                            _superGoonLogo.TweeningComponent.TweenEnd(sgTweener);
-                        })
-                        ;
-                    _superGoonLogo.TweeningComponent.AddTween(sgTweener);
+                    _greenRangerLogo.TweeningComponent.TweenEnd(greenRangerTween);
+                    GreenRangerFadeOut();
                 });
-            _superGoonLogo.TweeningComponent.AddTween(tweener);
+
+            _greenRangerLogo.TweeningComponent.AddTween(greenRangerTween);
+        }
+
+        private void GreenRangerFadeOut()
+        {
+            var greenRangerTween = new Tweener();
+            greenRangerTween.TweenTo(_greenRangerLogo.SpriteComponent,
+                opacity => _greenRangerLogo.SpriteComponent.Opacity, 0.0f, 3.0f, 2)
+                .Easing(EasingFunctions.Linear)
+                .OnEnd(tween =>
+                {
+                    _greenRangerLogo.TweeningComponent.TweenEnd(greenRangerTween);
+                    SuperGoonFadeIn();
+                });
+            _greenRangerLogo.TweeningComponent.AddTween(greenRangerTween);
+        }
+
+        private void SuperGoonFadeIn()
+        {
+            var superGoonTween = new Tweener();
+            superGoonTween.TweenTo(_superGoonLogo.SpriteComponent, opacity => _superGoonLogo.SpriteComponent.Opacity, 1.0f, 3, 1.0f)
+                .Easing(EasingFunctions.Linear)
+                .OnEnd(tween =>
+                {
+                    _superGoonLogo.TweeningComponent.TweenEnd(superGoonTween);
+                    SuperGoonFadeOut();
+                })
+                ;
+            _superGoonLogo.TweeningComponent.AddTween(superGoonTween);
+        }
+
+        private void SuperGoonFadeOut()
+        {
+            var superGoonTween = new Tweener();
+            superGoonTween.TweenTo(_superGoonLogo.SpriteComponent, opacity => _superGoonLogo.SpriteComponent.Opacity, 0.0f, 3, 2.0f)
+                .Easing(EasingFunctions.Linear)
+                .OnEnd(tween => _superGoonLogo.TweeningComponent.TweenEnd(superGoonTween))
+                ;
+            _superGoonLogo.TweeningComponent.AddTween(superGoonTween);
         }
 
     }

@@ -9,6 +9,7 @@ namespace MultiplayerZelda.Stages
 {
     public enum ZeldaStages
     {
-        LogoScreens
+        LogoScreens,
+	Second
     }
 }

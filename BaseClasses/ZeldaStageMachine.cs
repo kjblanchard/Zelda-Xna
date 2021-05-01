@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using MultiplayerZelda.Stages;
+﻿using MultiplayerZelda.Stages;
 using SgEngine.State;
 
 namespace MultiplayerZelda.BaseClasses

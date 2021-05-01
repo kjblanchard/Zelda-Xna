@@ -54,8 +54,10 @@ namespace MultiplayerZelda
             base.Draw(gameTime);
             GraphicsDevice.Clear(Color.Black);
             _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
-            _zeldaLevel.Draw(gameTime,_spriteBatch);
+            _zeldaLevel.Draw(gameTime, _spriteBatch);
             _spriteBatch.End();
+            _zeldaLevel.Initialize();
+
 
         }
     }
