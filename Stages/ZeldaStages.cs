@@ -10,6 +10,6 @@ namespace MultiplayerZelda.Stages
     public enum ZeldaStages
     {
         LogoScreens,
-	Second
+        MainMenuStage,
     }
 }

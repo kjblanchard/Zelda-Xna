@@ -21,6 +21,7 @@ namespace MultiplayerZelda.Stages
         public ZeldaStage()
         {
             _soundSystem ??= GameWorld.SoundSystem;
+
         }
         public virtual void Initialize()
         {
@@ -43,6 +44,10 @@ namespace MultiplayerZelda.Stages
         public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             _gameObjectList.Draw(gameTime,spriteBatch);
+        }
+
+        public virtual void End()
+        {
         }
 
         /// <summary>
