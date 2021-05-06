@@ -24,11 +24,13 @@ namespace MultiplayerZelda
             base.Initialize();
             _zeldaLevel.Initialize();
             _contentLoader = new ContentLoader(Content, ZeldaGraphicsDictionary.GameGraphicsDictionary);
+            Ui.Initialize();
         }
 
         protected override void LoadContent()
         {
             base.LoadContent();
+            Ui.LoadContent();
 
         }
 
@@ -44,6 +46,7 @@ namespace MultiplayerZelda
                 Exit();
             base.Update(gameTime);
             _zeldaLevel.Update(gameTime);
+            Ui.Update(gameTime);
 
         }
 
@@ -55,10 +58,9 @@ namespace MultiplayerZelda
             GraphicsDevice.Clear(Color.Black);
             _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
             _zeldaLevel.Draw(gameTime, _spriteBatch);
+            Ui.Draw(gameTime,_spriteBatch);
             _spriteBatch.End();
             _zeldaLevel.Initialize();
-
-
         }
     }
 }
