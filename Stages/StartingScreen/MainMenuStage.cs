@@ -8,6 +8,7 @@
 using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using MultiplayerZelda.BaseClasses;
+using SgEngine.Collision;
 using SgEngine.Core.Input;
 using SgEngine.EKS;
 
@@ -36,7 +37,29 @@ namespace MultiplayerZelda.Stages.StartingScreen
                 newPoint.Y++;
             if (_levelController.IsButtonHeld(ControllerButtons.Up))
                 newPoint.Y--;
+            var instance = GameWorld.Input;
+            if (GameWorld.Input.LeftMouseButtonClicked())
+            {
+                var mousePosition = instance.MousePosition().ToPoint();
+                var mouseRect = new Rectangle(mousePosition.X, mousePosition.Y, 25, 25);
+                for (int i = 0; i < _gameObjectList.GameObjects.Count; i++)
+                {
+                    if (Collision.ShapesIntersect(mouseRect,
+                        _gameObjectList.GameObjects[i].SpriteComponent.GetCurrentSpriteRect()))
+                        _gameObjectList.GameObjects[i].SpriteComponent.DebugMode = !_gameObjectList.GameObjects[i].SpriteComponent.DebugMode;
+                }
+
+            }
             uiElement.LocalPosition = newPoint;
+
+            foreach (var _gameObject in _gameObjectList.GameObjects)
+            {
+                if (_gameObject.SpriteComponent.DebugMode)
+                {
+                    var tempPoint = instance.MousePosition().ToPoint().ToVector2();
+                    _gameObject.LocalPosition = tempPoint;
+                }
+            }
             Debug.WriteLine(newPoint);
 
         }
