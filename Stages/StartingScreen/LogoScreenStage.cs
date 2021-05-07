@@ -21,9 +21,9 @@ namespace MultiplayerZelda.Stages.StartingScreen
         /// The kjb green ranger logo that should be shown
         /// </summary>
         private Logos _greenRangerLogo;
-        private readonly Point _greenRangerSize = new Point(250, 500);
+        private readonly Point _greenRangerSize = new Point(70, 130);
         private Logos _superGoonLogo;
-        private readonly Point _superGoonLogoSize = new Point(600, 600);
+        private readonly Point _superGoonLogoSize = new Point(200, 200);
 
         public override void Initialize()
         {
