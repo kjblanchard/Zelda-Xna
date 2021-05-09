@@ -5,13 +5,9 @@
 //
 ////////////////////////////////////////////////////////////
 
-using System.Diagnostics;
 using Microsoft.Xna.Framework;
-using MultiplayerZelda.BaseClasses;
-using SgEngine.Collision;
-using SgEngine.Core.Input;
 using SgEngine.EKS;
-using SgEngine.UI;
+using SgEngine.GUI;
 
 namespace MultiplayerZelda.Stages.StartingScreen
 {
@@ -21,9 +17,9 @@ namespace MultiplayerZelda.Stages.StartingScreen
         {
             base.Initialize();
             var MainMenuUiPanel = new Panel();
-            var UiIcon = new UiImage(ZeldaGraphics.BasicUiSquare, new Point(128, 128), new Vector2(100, 100));
+            var UiIcon = new GuiUiImage(ZeldaGraphics.BasicUiSquare, new Point(128, 128), new Vector2(100, 100));
             MainMenuUiPanel.AddUiObject(UiIcon);
-            GameWorld.Ui.MasterCanvas.AddPanel(MainMenuUiPanel);
+            GameWorld.Gui.MasterCanvas.AddPanel(MainMenuUiPanel);
         }
 
         public override void Update(GameTime gameTime)
