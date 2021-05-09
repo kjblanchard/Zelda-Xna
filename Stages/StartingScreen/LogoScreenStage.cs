@@ -35,8 +35,8 @@ namespace MultiplayerZelda.Stages.StartingScreen
 
         private void CreateLogos()
         {
-            _greenRangerLogo = new Logos(new Rectangle(GameWorld.WindowCenter, _greenRangerSize), ZeldaGraphics.GreenRangerLogo);
-            _superGoonLogo = new Logos(new Rectangle(GameWorld.WindowCenter, _superGoonLogoSize), ZeldaGraphics.SuperGoonLogo);
+            _greenRangerLogo = new Logos(new Rectangle(GameWorld.WorldCenter, _greenRangerSize), ZeldaGraphics.GreenRangerLogo);
+            _superGoonLogo = new Logos(new Rectangle(GameWorld.WorldCenter, _superGoonLogoSize), ZeldaGraphics.SuperGoonLogo);
             _greenRangerLogo.SpriteComponent.Opacity = 0;
             _superGoonLogo.SpriteComponent.Opacity = 0;
         }

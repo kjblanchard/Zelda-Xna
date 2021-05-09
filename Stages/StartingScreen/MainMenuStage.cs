@@ -17,7 +17,7 @@ namespace MultiplayerZelda.Stages.StartingScreen
         {
             base.Initialize();
             var MainMenuUiPanel = new Panel();
-            var UiIcon = new GuiUiImage(ZeldaGraphics.BasicUiSquare, new Point(128, 128), new Vector2(100, 100));
+            var UiIcon = new GuiUiImage(ZeldaGraphics.BasicUiSquare, new Point(128, 128), GameWorld.WorldCenter.ToVector2());
             MainMenuUiPanel.AddUiObject(UiIcon);
             GameWorld.Gui.MasterCanvas.AddPanel(MainMenuUiPanel);
         }
