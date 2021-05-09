@@ -11,7 +11,7 @@ namespace MultiplayerZelda
     /// </summary>
     public class ZeldaGameWorld : GameWorld
     {
-        private ZeldaLevel _zeldaLevel;
+        private readonly ZeldaLevel _zeldaLevel;
 
         public ZeldaGameWorld()
         {
@@ -24,15 +24,8 @@ namespace MultiplayerZelda
             base.Initialize();
             _zeldaLevel.Initialize();
             _contentLoader = new ContentLoader(Content, ZeldaGraphicsDictionary.GameGraphicsDictionary);
-            Gui.Initialize();
         }
 
-        protected override void LoadContent()
-        {
-            base.LoadContent();
-            Gui.LoadContent();
-
-        }
 
         protected override void BeginRun()
         {
@@ -56,12 +49,13 @@ namespace MultiplayerZelda
 
             base.Draw(gameTime);
             GraphicsDevice.Clear(Color.Black);
-            //_spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend,null,null,null,null,_resolutionHelper.SpriteScale);
-            _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend,null,null,null,null,_resolutionHelper.SpriteScale * MainCamera.GetCameraTransformMatrix());
+            _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null,
+                _resolutionHelper.SpriteScale * MainCamera.GetCameraTransformMatrix());
             _zeldaLevel.Draw(gameTime, _spriteBatch);
-            Gui.Draw(gameTime,_spriteBatch);
             _spriteBatch.End();
-            _zeldaLevel.Initialize();
+            _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, _resolutionHelper.SpriteScale);
+            Gui.Draw(gameTime, _spriteBatch);
+            _spriteBatch.End();
         }
     }
 }
