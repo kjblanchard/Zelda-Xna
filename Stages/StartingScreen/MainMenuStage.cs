@@ -24,6 +24,7 @@ namespace MultiplayerZelda.Stages.StartingScreen
 
         public override void Update(GameTime gameTime)
         {
+            
 
         }
     }
