@@ -13,6 +13,13 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin Fonts/ChronoType.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/ChronoType.spritefont
+
 #begin Graphics/Logos/KjbLogo.png
 /importer:TextureImporter
 /processor:TextureProcessor
