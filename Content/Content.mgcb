@@ -20,6 +20,18 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/ChronoType.spritefont
 
+#begin Graphics/Logos/FF7-remade-main-menu-670x377.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphics/Logos/FF7-remade-main-menu-670x377.png;Graphics/Logos/MainMenuBackground.png
+
 #begin Graphics/Logos/KjbLogo.png
 /importer:TextureImporter
 /processor:TextureProcessor
