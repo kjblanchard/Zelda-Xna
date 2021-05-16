@@ -82,10 +82,12 @@ namespace MultiplayerZelda.UI.TitleScreen
             var guiButtonController = new GuiButtonController(new Vector2());
             guiButtonController.AddButton(titleMenuButton);
             guiButtonController.AddButton(titleMenuButton2);
-            mainMenuBackgroundPanel.AddTextObjectToPanel(mainMenuTitleText);
-            //mainMenuBackgroundPanel.AddUiObject(titleMenuButton);
             mainMenuBackgroundPanel.AddUiObject(guiButtonController);
+
+
+            mainMenuBackgroundPanel.AddTextObjectToPanel(mainMenuTitleText);
             titleMenuButton.DebugMode = true;
+            titleMenuButton2.DebugMode = true;
             MainMenuUiPanel.AddTextObjectToPanel(newGameTextConfig);
             MainMenuUiPanel.AddTextObjectToPanel(continueTextConfig);
             MainMenuUiPanel.AddTextObjectToPanel(optionsTextBox);
@@ -105,11 +107,12 @@ namespace MultiplayerZelda.UI.TitleScreen
                 displayText = "Testing Out button",
                 fontType = GuiTextComponent.FontTypes.ChronoTypeRegular,
                 parent = this,
-                parentOffset = new Vector2(0,16*multiplier),
-                textBoxSize = new Point(16, 16),
+                parentOffset = new Vector2(16,16*multiplier),
+                textBoxSize = new Point(70, 11),
 
             };
             var titleMenuButton = new TitleMenuButton1(textConfig, buttonSize, parentOffset,ZeldaGraphics.BasicUiSquare);
+            titleMenuButton.AutoSetSizeBasedOnText();
             return titleMenuButton;
         }
     }
