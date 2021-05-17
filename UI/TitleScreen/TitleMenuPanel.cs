@@ -77,26 +77,36 @@ namespace MultiplayerZelda.UI.TitleScreen
                 textBoxSize = new Point(mainMenuBoxSize.X - (borders.Left + borders.Right), oneLineTextSize),
             };
 
-            var titleMenuButton = CreateMenuButton(1);
-            var titleMenuButton2 = CreateMenuButton(2);
-            var guiButtonController = new GuiButtonController(new Vector2());
-            guiButtonController.AddButton(titleMenuButton);
-            guiButtonController.AddButton(titleMenuButton2);
-            mainMenuBackgroundPanel.AddUiObject(guiButtonController);
-
 
             mainMenuBackgroundPanel.AddTextObjectToPanel(mainMenuTitleText);
-            titleMenuButton.DebugMode = true;
-            titleMenuButton2.DebugMode = true;
-            MainMenuUiPanel.AddTextObjectToPanel(newGameTextConfig);
-            MainMenuUiPanel.AddTextObjectToPanel(continueTextConfig);
-            MainMenuUiPanel.AddTextObjectToPanel(optionsTextBox);
-            MainMenuUiPanel.AddTextObjectToPanel(debugOptionsTextBox);
+
+            var mainMenuGuiButtonController = new GuiButtonController(MainMenuUiPanel);
+            var newGameTextButton = new TitleScreenMainMenuButton(newGameTextConfig, new Point(), new Vector2());
+            newGameTextButton.AutoSetSizeBasedOnText();
+            mainMenuGuiButtonController.AddButton(newGameTextButton);
+            MainMenuUiPanel.AddUiObject(mainMenuGuiButtonController);
+
+
+
+            var mainmenuContinueButton = new TitleScreenMainMenuButton(continueTextConfig, new Point(), new Vector2());
+            mainmenuContinueButton.AutoSetSizeBasedOnText();
+            mainMenuGuiButtonController.AddButton(mainmenuContinueButton);
+
+
+            var optionsTextButton = new TitleScreenMainMenuButton(optionsTextBox, new Point(), new Vector2());
+            mainmenuContinueButton.AutoSetSizeBasedOnText();
+            mainMenuGuiButtonController.AddButton(optionsTextButton);
+
+            var debugButton = new TitleScreenMainMenuButton(debugOptionsTextBox, new Point(), new Vector2());
+            mainmenuContinueButton.AutoSetSizeBasedOnText();
+            mainMenuGuiButtonController.AddButton(debugButton);
+
+            mainMenuGuiButtonController.AllButtonDebugMode();
             GameWorld.Gui.MasterCanvas.AddPanel(mainMenuBackgroundPanel);
             GameWorld.Gui.MasterCanvas.AddPanel(MainMenuUiPanel);
         }
 
-        private TitleMenuButton1 CreateMenuButton(int multiplier)
+        private TitleScreenMainMenuButton CreateMenuButton(int multiplier)
         {
 
             var buttonSize = new Point(16, 16);
@@ -111,7 +121,7 @@ namespace MultiplayerZelda.UI.TitleScreen
                 textBoxSize = new Point(70, 11),
 
             };
-            var titleMenuButton = new TitleMenuButton1(textConfig, buttonSize, parentOffset,ZeldaGraphics.BasicUiSquare);
+            var titleMenuButton = new TitleScreenMainMenuButton(textConfig, buttonSize, parentOffset,ZeldaGraphics.BasicUiSquare);
             titleMenuButton.AutoSetSizeBasedOnText();
             return titleMenuButton;
         }
