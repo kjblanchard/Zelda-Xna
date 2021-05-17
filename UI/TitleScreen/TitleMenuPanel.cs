@@ -101,29 +101,11 @@ namespace MultiplayerZelda.UI.TitleScreen
             mainmenuContinueButton.AutoSetSizeBasedOnText();
             mainMenuGuiButtonController.AddButton(debugButton);
 
-            mainMenuGuiButtonController.AllButtonDebugMode();
             GameWorld.Gui.MasterCanvas.AddPanel(mainMenuBackgroundPanel);
             GameWorld.Gui.MasterCanvas.AddPanel(MainMenuUiPanel);
+            //This actually selects the button and starts the button selector to be active
+            mainMenuGuiButtonController.ButtonsActive = true;
         }
 
-        private TitleScreenMainMenuButton CreateMenuButton(int multiplier)
-        {
-
-            var buttonSize = new Point(16, 16);
-            var parentOffset = new Vector2(32, 32);
-            var textConfig = new TextBoxConfig
-            {
-                alignment = GuiTextComponent.Alignment.Left,
-                displayText = "Testing Out button",
-                fontType = GuiTextComponent.FontTypes.ChronoTypeRegular,
-                parent = this,
-                parentOffset = new Vector2(16,16*multiplier),
-                textBoxSize = new Point(70, 11),
-
-            };
-            var titleMenuButton = new TitleScreenMainMenuButton(textConfig, buttonSize, parentOffset,ZeldaGraphics.BasicUiSquare);
-            titleMenuButton.AutoSetSizeBasedOnText();
-            return titleMenuButton;
-        }
     }
 }
