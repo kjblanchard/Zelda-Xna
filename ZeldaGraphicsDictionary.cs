@@ -20,7 +20,9 @@ namespace MultiplayerZelda
         GreenRangerLogo = 0,
         SuperGoonLogo = 1,
         BasicUiSquare = 2,
-        MainMenuBackground = 3
+        MainMenuBackground = 3,
+        RightPointFingerCursor = 4,
+        MainMouseCursor = 5
     }
 
     /// <summary>
@@ -33,7 +35,9 @@ namespace MultiplayerZelda
             new Spritesheet("Graphics/Logos/KjbLogo"),
             new Spritesheet("Graphics/Logos/SggLogo"),
             new Spritesheet("Graphics/Ui/Core/BaseUi"),
-            new Spritesheet("Graphics/Logos/MainMenuBackground")
+            new Spritesheet("Graphics/Logos/MainMenuBackground"),
+            new Spritesheet("Graphics/Ui/Core/singleFinger"),
+            new Spritesheet("Graphics/Ui/Core/mouseCursor"),
 
         };
 

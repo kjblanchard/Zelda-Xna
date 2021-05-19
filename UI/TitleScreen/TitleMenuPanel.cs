@@ -80,7 +80,7 @@ namespace MultiplayerZelda.UI.TitleScreen
 
             mainMenuBackgroundPanel.AddTextObjectToPanel(mainMenuTitleText);
 
-            var mainMenuGuiButtonController = new GuiButtonController(MainMenuUiPanel);
+            var mainMenuGuiButtonController = new MainMenuGuiButtonController(MainMenuUiPanel);
             var newGameTextButton = new TitleScreenMainMenuButton(newGameTextConfig, new Point(), new Vector2());
             newGameTextButton.AutoSetSizeBasedOnText();
             mainMenuGuiButtonController.AddButton(newGameTextButton);
@@ -105,6 +105,7 @@ namespace MultiplayerZelda.UI.TitleScreen
             GameWorld.Gui.MasterCanvas.AddPanel(MainMenuUiPanel);
             //This actually selects the button and starts the button selector to be active
             mainMenuGuiButtonController.ButtonsActive = true;
+            mainMenuGuiButtonController.AllButtonDebugMode();
         }
 
     }

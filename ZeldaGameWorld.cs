@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended;
 using SgEngine.Core;
+using SgEngine.Core.Input;
 using SgEngine.EKS;
 
 namespace MultiplayerZelda
@@ -16,6 +18,7 @@ namespace MultiplayerZelda
         public ZeldaGameWorld()
         {
             _zeldaLevel = new ZeldaLevel();
+            Controller.MouseDebugMode = true;
 
         }
 
@@ -24,6 +27,8 @@ namespace MultiplayerZelda
             base.Initialize();
             _zeldaLevel.Initialize();
             _contentLoader = new ContentLoader(Content, ZeldaGraphicsDictionary.GameGraphicsDictionary);
+            Controller.MouseSpriteSheet = ContentLoader.GetSpriteSheet(ZeldaGraphics.MainMouseCursor);
+            Mouse.SetCursor(MouseCursor.FromTexture2D(Controller.MouseSpriteSheet._texture, 0, 0));
         }
 
 
@@ -55,6 +60,9 @@ namespace MultiplayerZelda
             _spriteBatch.End();
             _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, _resolutionHelper.SpriteScale);
             Gui.Draw(gameTime, _spriteBatch);
+
+            if(Controller.MouseDebugMode)
+                _spriteBatch.DrawRectangle(Controller.MouseBounds(),Color.White,0.5f);
             _spriteBatch.End();
         }
     }
