@@ -19,8 +19,9 @@ namespace MultiplayerZelda.UI.TitleScreen
 {
     public class TitleScreenMainMenuButton : GuiButton
     {
-        public TitleScreenMainMenuButton(TextBoxConfig textBoxConfig, Point size, Vector2 parentOffset, Enum graphicToLoad = null) : base(textBoxConfig, size, parentOffset, graphicToLoad)
+        public TitleScreenMainMenuButton(TextBoxConfig textBoxConfig, Point size, Vector2 parentOffset, GuiComponent parent = null, Enum graphicToLoad = null) : base(textBoxConfig, size, parentOffset, parent,graphicToLoad)
         {
+            _guiTextComponent.DebugMode = true;
         }
 
         public override void OnSelected()

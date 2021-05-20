@@ -81,31 +81,32 @@ namespace MultiplayerZelda.UI.TitleScreen
             mainMenuBackgroundPanel.AddTextObjectToPanel(mainMenuTitleText);
 
             var mainMenuGuiButtonController = new MainMenuGuiButtonController(MainMenuUiPanel);
-            var newGameTextButton = new TitleScreenMainMenuButton(newGameTextConfig, new Point(), new Vector2());
+            var newGameTextButton = new TitleScreenMainMenuButton(newGameTextConfig, new Point(newGameTextConfig.textBoxSize.X,newGameTextConfig.textBoxSize.Y), new Vector2(newGameTextConfig.parentOffset.X,newGameTextConfig.parentOffset.Y), MainMenuUiPanel);
             newGameTextButton.AutoSetSizeBasedOnText();
             mainMenuGuiButtonController.AddButton(newGameTextButton);
             MainMenuUiPanel.AddUiObject(mainMenuGuiButtonController);
 
 
 
-            var mainmenuContinueButton = new TitleScreenMainMenuButton(continueTextConfig, new Point(), new Vector2());
+
+            var mainmenuContinueButton = new TitleScreenMainMenuButton(continueTextConfig, new Point(newGameTextConfig.textBoxSize.X,newGameTextConfig.textBoxSize.Y), new Vector2(continueTextConfig.parentOffset.X,continueTextConfig.parentOffset.Y), MainMenuUiPanel);
             mainmenuContinueButton.AutoSetSizeBasedOnText();
             mainMenuGuiButtonController.AddButton(mainmenuContinueButton);
 
 
-            var optionsTextButton = new TitleScreenMainMenuButton(optionsTextBox, new Point(), new Vector2());
-            mainmenuContinueButton.AutoSetSizeBasedOnText();
+            var optionsTextButton = new TitleScreenMainMenuButton(optionsTextBox, new Point(newGameTextConfig.textBoxSize.X,newGameTextConfig.textBoxSize.Y), new Vector2(optionsTextBox.parentOffset.X,optionsTextBox.parentOffset.Y),MainMenuUiPanel);
+            optionsTextButton.AutoSetSizeBasedOnText();
             mainMenuGuiButtonController.AddButton(optionsTextButton);
 
-            var debugButton = new TitleScreenMainMenuButton(debugOptionsTextBox, new Point(), new Vector2());
-            mainmenuContinueButton.AutoSetSizeBasedOnText();
+            var debugButton = new TitleScreenMainMenuButton(debugOptionsTextBox, new Point(newGameTextConfig.textBoxSize.X,newGameTextConfig.textBoxSize.Y), new Vector2(debugOptionsTextBox.parentOffset.X,debugOptionsTextBox.parentOffset.Y),MainMenuUiPanel);
+            debugButton.AutoSetSizeBasedOnText();
             mainMenuGuiButtonController.AddButton(debugButton);
 
             GameWorld.Gui.MasterCanvas.AddPanel(mainMenuBackgroundPanel);
             GameWorld.Gui.MasterCanvas.AddPanel(MainMenuUiPanel);
             //This actually selects the button and starts the button selector to be active
             mainMenuGuiButtonController.ButtonsActive = true;
-            mainMenuGuiButtonController.AllButtonDebugMode();
+            //mainMenuGuiButtonController.AllButtonDebugMode();
         }
 
     }
