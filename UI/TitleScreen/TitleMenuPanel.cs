@@ -23,12 +23,13 @@ namespace MultiplayerZelda.UI.TitleScreen
             var mainMenuBoxSize = new Point(90, 90);
             var mainMenuBoxLocation = new Vector2(300, 150);
             var spaceBetweenTextBoxes = 20;
-            var borders = new GuiBorder {Top = 10, Right = 10, Bottom = 10, Left = 13};
+            var borders = new GuiBorder { Top = 10, Right = 10, Bottom = 10, Left = 13 };
             var oneLineTextSize = 11;
             var fontType = GuiTextComponent.FontTypes.ChronoTypeRegular;
-            var mainMenuBackgroundPanel =
-                new Panel(new Vector2(GameWorld.GameWorldSize.X / 2 - 20, GameWorld.GameWorldSize.Y / 2),
-                    GameWorld.GameWorldSize, ZeldaGraphics.MainMenuBackground);
+            var buttonSize = new Point(mainMenuBoxSize.X - borders.Left - borders.Right, oneLineTextSize);
+
+            var mainMenuBackgroundPanel = new Panel(new Vector2(GameWorld.GameWorldSize.X / 2 - 20, GameWorld.GameWorldSize.Y / 2),
+                GameWorld.GameWorldSize, ZeldaGraphics.MainMenuBackground);
             TextBoxConfig mainMenuTitleText = new TextBoxConfig
             {
                 alignment = GuiTextComponent.Alignment.Center,
@@ -39,7 +40,12 @@ namespace MultiplayerZelda.UI.TitleScreen
                 textBoxSize = new Point(mainMenuBackgroundPanel.Size.X, oneLineTextSize)
 
             };
+            mainMenuBackgroundPanel.AddTextObjectToPanel(mainMenuTitleText);
+
+            
+            
             var MainMenuUiPanel = new Panel(mainMenuBoxLocation, mainMenuBoxSize, ZeldaGraphics.BasicUiSquare);
+
             TextBoxConfig newGameTextConfig = new TextBoxConfig
             {
                 alignment = GuiTextComponent.Alignment.Left,
@@ -78,36 +84,29 @@ namespace MultiplayerZelda.UI.TitleScreen
             };
 
 
-            mainMenuBackgroundPanel.AddTextObjectToPanel(mainMenuTitleText);
-
             var mainMenuGuiButtonController = new MainMenuGuiButtonController(MainMenuUiPanel);
-            var newGameTextButton = new TitleScreenMainMenuButton(newGameTextConfig, new Point(newGameTextConfig.textBoxSize.X,newGameTextConfig.textBoxSize.Y), new Vector2(newGameTextConfig.parentOffset.X,newGameTextConfig.parentOffset.Y), MainMenuUiPanel);
-            newGameTextButton.AutoSetSizeBasedOnText();
-            mainMenuGuiButtonController.AddButton(newGameTextButton);
             MainMenuUiPanel.AddUiObject(mainMenuGuiButtonController);
 
-
-
-
-            var mainmenuContinueButton = new TitleScreenMainMenuButton(continueTextConfig, new Point(newGameTextConfig.textBoxSize.X,newGameTextConfig.textBoxSize.Y), new Vector2(continueTextConfig.parentOffset.X,continueTextConfig.parentOffset.Y), MainMenuUiPanel);
-            mainmenuContinueButton.AutoSetSizeBasedOnText();
-            mainMenuGuiButtonController.AddButton(mainmenuContinueButton);
-
-
-            var optionsTextButton = new TitleScreenMainMenuButton(optionsTextBox, new Point(newGameTextConfig.textBoxSize.X,newGameTextConfig.textBoxSize.Y), new Vector2(optionsTextBox.parentOffset.X,optionsTextBox.parentOffset.Y),MainMenuUiPanel);
-            optionsTextButton.AutoSetSizeBasedOnText();
-            mainMenuGuiButtonController.AddButton(optionsTextButton);
-
-            var debugButton = new TitleScreenMainMenuButton(debugOptionsTextBox, new Point(newGameTextConfig.textBoxSize.X,newGameTextConfig.textBoxSize.Y), new Vector2(debugOptionsTextBox.parentOffset.X,debugOptionsTextBox.parentOffset.Y),MainMenuUiPanel);
-            debugButton.AutoSetSizeBasedOnText();
-            mainMenuGuiButtonController.AddButton(debugButton);
+            var newGameTextButton = CreateMainMenuButtonForMainMenuUi(newGameTextConfig, buttonSize, MainMenuUiPanel);
+            var mainMenuContinueButton =
+                CreateMainMenuButtonForMainMenuUi(continueTextConfig, buttonSize, MainMenuUiPanel);
+            var optionsTextButton = CreateMainMenuButtonForMainMenuUi(optionsTextBox, buttonSize, MainMenuUiPanel);
+            var debugButton = CreateMainMenuButtonForMainMenuUi(debugOptionsTextBox, buttonSize, MainMenuUiPanel);
 
             GameWorld.Gui.MasterCanvas.AddPanel(mainMenuBackgroundPanel);
             GameWorld.Gui.MasterCanvas.AddPanel(MainMenuUiPanel);
-            //This actually selects the button and starts the button selector to be active
+
+            mainMenuGuiButtonController.AddButtons(newGameTextButton, mainMenuContinueButton, optionsTextButton, debugButton);
             mainMenuGuiButtonController.ButtonsActive = true;
-            //mainMenuGuiButtonController.AllButtonDebugMode();
         }
 
+
+        private TitleScreenMainMenuButton CreateMainMenuButtonForMainMenuUi(TextBoxConfig textConfigForButton, Point buttonSize, GuiComponent buttonParent)
+        {
+            var newButton = new TitleScreenMainMenuButton(textConfigForButton, buttonSize, textConfigForButton.parentOffset,
+                buttonParent);
+            newButton.AutoSetSizeBasedOnText();
+            return newButton;
+        }
     }
 }
