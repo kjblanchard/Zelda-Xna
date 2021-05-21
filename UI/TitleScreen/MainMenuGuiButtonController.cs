@@ -14,7 +14,7 @@ namespace MultiplayerZelda.UI.TitleScreen
 {
     public class MainMenuGuiButtonController : GuiButtonController
     {
-        public GuiImageComponent CursurGuiImageComponent;
+        public GuiImageComponent CursorGuiImageComponent;
         public MainMenuGuiButtonController(GuiComponent parent, Vector2 offset = new Vector2(), Point size = new Point()) : base(parent, offset, size)
         {
         }
@@ -22,26 +22,31 @@ namespace MultiplayerZelda.UI.TitleScreen
         public override void Initialize()
         {
             base.Initialize();
-            CursurGuiImageComponent =
-                new GuiImageComponent(this, ZeldaGraphics.RightPointFingerCursor, new Point(16, 16));
-            CursurGuiImageComponent.LocationOverride = true;
+            CursorGuiImageComponent =
+                new GuiImageComponent(this, ZeldaGraphics.RightPointFingerCursor, new Point(16, 16))
+                {
+                    LocationOverride = true
+                };
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            //CursurGuiImageComponent.LocalPosition = UpdateCursorPosition();
-            CursurGuiImageComponent.LocationOverridePosition = UpdateCursorPosition();
+            CursorGuiImageComponent.LocationOverridePosition = UpdateCursorPosition();
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             base.Draw(gameTime, spriteBatch);
-            CursurGuiImageComponent.Draw(gameTime,spriteBatch);
+            CursorGuiImageComponent.Draw(gameTime,spriteBatch);
         }
         private Vector2 UpdateCursorPosition()
         {
-            return ButtonsToManage[CurrentSelection]._guiTextComponent.CursorDrawLocation();
+            var tempLocation = ButtonsToManage[CurrentSelection].GlobalPosition;
+            tempLocation -= _parent.Origin;
+            tempLocation.X -= 10;
+            tempLocation.Y += ButtonsToManage[CurrentSelection].Size.Y / 2;
+            return tempLocation;
         }
     }
 }

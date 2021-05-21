@@ -40,7 +40,7 @@ namespace MultiplayerZelda.UI.TitleScreen
                 textBoxSize = new Point(mainMenuBackgroundPanel.Size.X, oneLineTextSize)
 
             };
-            mainMenuBackgroundPanel.AddTextObjectToPanel(mainMenuTitleText);
+            mainMenuBackgroundPanel.AddUiObject(new GuiTextComponent(mainMenuTitleText));
 
             
             
