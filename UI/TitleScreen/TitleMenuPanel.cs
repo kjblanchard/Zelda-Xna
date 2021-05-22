@@ -11,6 +11,8 @@ using SgEngine.GUI;
 using SgEngine.GUI.Components;
 using SgEngine.GUI.Types;
 using SgEngine.GUI.Utils;
+using SgEngine.SgJson;
+using SgEngine.SgJson.Parsing;
 
 namespace MultiplayerZelda.UI.TitleScreen
 {
@@ -25,23 +27,29 @@ namespace MultiplayerZelda.UI.TitleScreen
             var spaceBetweenTextBoxes = 20;
             var borders = new GuiBorder { Top = 10, Right = 10, Bottom = 10, Left = 13 };
             var oneLineTextSize = 11;
-            var fontType = GuiTextComponent.FontTypes.ChronoTypeRegular;
+            var fontType =(int) ZeldaFonts.ChronoRegular;
             var buttonSize = new Point(mainMenuBoxSize.X - borders.Left - borders.Right, oneLineTextSize);
 
-            var mainMenuBackgroundPanel = new Panel(new Vector2(GameWorld.GameWorldSize.X / 2 - 20, GameWorld.GameWorldSize.Y / 2),
-                GameWorld.GameWorldSize, ZeldaGraphics.MainMenuBackground);
-            TextBoxConfig mainMenuTitleText = new TextBoxConfig
+            //var mainMenuBackgroundPanel = new Panel(new Vector2(GameWorld.GameWorldSize.X / 2 - 20, GameWorld.GameWorldSize.Y / 2),
+            //    GameWorld.GameWorldSize, ZeldaGraphics.MainMenuBackground);
+            //TextBoxConfig mainMenuTitleText = new TextBoxConfig
+            //{
+            //    Alignment = GuiTextComponent.Alignment.Center,
+            //    DisplayText = "Welcome to our Zelda Maker / Multiplayer!",
+            //    FontType = fontType,
+            //    Parent = mainMenuBackgroundPanel,
+            //    ParentOffset = new Vector2(20, 10),
+            //    TextBoxSize = new Point(mainMenuBackgroundPanel.Size.X, oneLineTextSize)
+
+            //};
+            //mainMenuBackgroundPanel.AddUiObject(new GuiTextComponent(mainMenuTitleText,fontType));
+            var screenJson = UiParser.LoadUiScreenJson("MainTitleScreenUi");
+            var screenPanels = UiParser.ParsePanelsFromJson(screenJson);
+            foreach (var panel in screenPanels)
             {
-                Alignment = GuiTextComponent.Alignment.Center,
-                DisplayText = "Welcome to our Zelda Maker / Multiplayer!",
-                FontType = fontType,
-                Parent = mainMenuBackgroundPanel,
-                ParentOffset = new Vector2(20, 10),
-                TextBoxSize = new Point(mainMenuBackgroundPanel.Size.X, oneLineTextSize)
-
-            };
-            mainMenuBackgroundPanel.AddUiObject(new GuiTextComponent(mainMenuTitleText));
-
+                GameWorld.Gui.MasterCanvas.AddPanel(panel);
+                
+            }
             
             
             var MainMenuUiPanel = new Panel(mainMenuBoxLocation, mainMenuBoxSize, ZeldaGraphics.BasicUiSquare);
@@ -50,7 +58,7 @@ namespace MultiplayerZelda.UI.TitleScreen
             {
                 Alignment = GuiTextComponent.Alignment.Left,
                 DisplayText = "New Game",
-                FontType = GuiTextComponent.FontTypes.ChronoTypeRegular,
+                FontType = fontType,
                 Parent = MainMenuUiPanel,
                 ParentOffset = new Vector2(borders.Left, borders.Top),
                 TextBoxSize = new Point(mainMenuBoxSize.X - (borders.Left + borders.Right), oneLineTextSize),
@@ -59,7 +67,7 @@ namespace MultiplayerZelda.UI.TitleScreen
             {
                 Alignment = GuiTextComponent.Alignment.Left,
                 DisplayText = "Continue",
-                FontType = GuiTextComponent.FontTypes.ChronoTypeRegular,
+                FontType = fontType,
                 Parent = MainMenuUiPanel,
                 ParentOffset = new Vector2(borders.Left, (borders.Top + spaceBetweenTextBoxes)),
                 TextBoxSize = new Point(mainMenuBoxSize.X - (borders.Left + borders.Right), oneLineTextSize)
@@ -68,7 +76,7 @@ namespace MultiplayerZelda.UI.TitleScreen
             {
                 Alignment = GuiTextComponent.Alignment.Left,
                 DisplayText = "Options",
-                FontType = GuiTextComponent.FontTypes.ChronoTypeRegular,
+                FontType = fontType,
                 Parent = MainMenuUiPanel,
                 ParentOffset = new Vector2(borders.Left, borders.Top + spaceBetweenTextBoxes * 2),
                 TextBoxSize = new Point(mainMenuBoxSize.X - (borders.Left + borders.Right), oneLineTextSize),
@@ -77,7 +85,7 @@ namespace MultiplayerZelda.UI.TitleScreen
             {
                 Alignment = GuiTextComponent.Alignment.Left,
                 DisplayText = "Debug Mode",
-                FontType = GuiTextComponent.FontTypes.ChronoTypeRegular,
+                FontType = fontType,
                 Parent = MainMenuUiPanel,
                 ParentOffset = new Vector2(borders.Left, borders.Top + spaceBetweenTextBoxes * 3),
                 TextBoxSize = new Point(mainMenuBoxSize.X - (borders.Left + borders.Right), oneLineTextSize),
@@ -93,7 +101,7 @@ namespace MultiplayerZelda.UI.TitleScreen
             CreateMainMenuButtonForMainMenuUi(optionsTextBox, buttonSize, MainMenuUiPanel,mainMenuGuiButtonController);
             CreateMainMenuButtonForMainMenuUi(debugOptionsTextBox, buttonSize, MainMenuUiPanel,mainMenuGuiButtonController);
 
-            GameWorld.Gui.MasterCanvas.AddPanel(mainMenuBackgroundPanel);
+            //GameWorld.Gui.MasterCanvas.AddPanel(mainMenuBackgroundPanel);
             GameWorld.Gui.MasterCanvas.AddPanel(MainMenuUiPanel);
 
             mainMenuGuiButtonController.ButtonsActive = true;

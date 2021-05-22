@@ -5,9 +5,6 @@
 //
 ////////////////////////////////////////////////////////////
 
-using System.Collections.Generic;
-using System.Runtime.InteropServices.ComTypes;
-using Microsoft.Xna.Framework;
 using SgEngine.Core;
 
 namespace MultiplayerZelda

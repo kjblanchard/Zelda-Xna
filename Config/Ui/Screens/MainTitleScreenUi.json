@@ -3,19 +3,19 @@
         {
             "Name" : "Background Image",
             "Location" : {
-                "X" : 384,
-                "Y" : 286
+                "X" : 192,
+                "Y" : 143
             },
             "Size" : {
                 "X" : 384,
                 "Y" : 286
             },
-            "Graphic" : "none",
+            "Graphic" : -1,
             "TextComponents" : [
                 {
                     "Alignment" : "Center",
                     "DisplayText" : "Welcome to our Zelda maker and Zelda Multiplayer!",
-                    "FontType" : "ChronoN",
+                    "FontType" : 0,
                     "ParentOffset" : {
                         "X" : 20,
                         "Y" : 10
