@@ -32,12 +32,12 @@ namespace MultiplayerZelda.UI.TitleScreen
                 GameWorld.GameWorldSize, ZeldaGraphics.MainMenuBackground);
             TextBoxConfig mainMenuTitleText = new TextBoxConfig
             {
-                alignment = GuiTextComponent.Alignment.Center,
-                displayText = "Welcome to our Zelda Maker / Multiplayer!",
-                fontType = fontType,
-                parent = mainMenuBackgroundPanel,
-                parentOffset = new Vector2(20, 10),
-                textBoxSize = new Point(mainMenuBackgroundPanel.Size.X, oneLineTextSize)
+                Alignment = GuiTextComponent.Alignment.Center,
+                DisplayText = "Welcome to our Zelda Maker / Multiplayer!",
+                FontType = fontType,
+                Parent = mainMenuBackgroundPanel,
+                ParentOffset = new Vector2(20, 10),
+                TextBoxSize = new Point(mainMenuBackgroundPanel.Size.X, oneLineTextSize)
 
             };
             mainMenuBackgroundPanel.AddUiObject(new GuiTextComponent(mainMenuTitleText));
@@ -48,39 +48,39 @@ namespace MultiplayerZelda.UI.TitleScreen
 
             TextBoxConfig newGameTextConfig = new TextBoxConfig
             {
-                alignment = GuiTextComponent.Alignment.Left,
-                displayText = "New Game",
-                fontType = GuiTextComponent.FontTypes.ChronoTypeRegular,
-                parent = MainMenuUiPanel,
-                parentOffset = new Vector2(borders.Left, borders.Top),
-                textBoxSize = new Point(mainMenuBoxSize.X - (borders.Left + borders.Right), oneLineTextSize),
+                Alignment = GuiTextComponent.Alignment.Left,
+                DisplayText = "New Game",
+                FontType = GuiTextComponent.FontTypes.ChronoTypeRegular,
+                Parent = MainMenuUiPanel,
+                ParentOffset = new Vector2(borders.Left, borders.Top),
+                TextBoxSize = new Point(mainMenuBoxSize.X - (borders.Left + borders.Right), oneLineTextSize),
             };
             TextBoxConfig continueTextConfig = new TextBoxConfig
             {
-                alignment = GuiTextComponent.Alignment.Left,
-                displayText = "Continue",
-                fontType = GuiTextComponent.FontTypes.ChronoTypeRegular,
-                parent = MainMenuUiPanel,
-                parentOffset = new Vector2(borders.Left, (borders.Top + spaceBetweenTextBoxes)),
-                textBoxSize = new Point(mainMenuBoxSize.X - (borders.Left + borders.Right), oneLineTextSize)
+                Alignment = GuiTextComponent.Alignment.Left,
+                DisplayText = "Continue",
+                FontType = GuiTextComponent.FontTypes.ChronoTypeRegular,
+                Parent = MainMenuUiPanel,
+                ParentOffset = new Vector2(borders.Left, (borders.Top + spaceBetweenTextBoxes)),
+                TextBoxSize = new Point(mainMenuBoxSize.X - (borders.Left + borders.Right), oneLineTextSize)
             };
             TextBoxConfig optionsTextBox = new TextBoxConfig
             {
-                alignment = GuiTextComponent.Alignment.Left,
-                displayText = "Options",
-                fontType = GuiTextComponent.FontTypes.ChronoTypeRegular,
-                parent = MainMenuUiPanel,
-                parentOffset = new Vector2(borders.Left, borders.Top + spaceBetweenTextBoxes * 2),
-                textBoxSize = new Point(mainMenuBoxSize.X - (borders.Left + borders.Right), oneLineTextSize),
+                Alignment = GuiTextComponent.Alignment.Left,
+                DisplayText = "Options",
+                FontType = GuiTextComponent.FontTypes.ChronoTypeRegular,
+                Parent = MainMenuUiPanel,
+                ParentOffset = new Vector2(borders.Left, borders.Top + spaceBetweenTextBoxes * 2),
+                TextBoxSize = new Point(mainMenuBoxSize.X - (borders.Left + borders.Right), oneLineTextSize),
             };
             TextBoxConfig debugOptionsTextBox = new TextBoxConfig
             {
-                alignment = GuiTextComponent.Alignment.Left,
-                displayText = "Debug Mode",
-                fontType = GuiTextComponent.FontTypes.ChronoTypeRegular,
-                parent = MainMenuUiPanel,
-                parentOffset = new Vector2(borders.Left, borders.Top + spaceBetweenTextBoxes * 3),
-                textBoxSize = new Point(mainMenuBoxSize.X - (borders.Left + borders.Right), oneLineTextSize),
+                Alignment = GuiTextComponent.Alignment.Left,
+                DisplayText = "Debug Mode",
+                FontType = GuiTextComponent.FontTypes.ChronoTypeRegular,
+                Parent = MainMenuUiPanel,
+                ParentOffset = new Vector2(borders.Left, borders.Top + spaceBetweenTextBoxes * 3),
+                TextBoxSize = new Point(mainMenuBoxSize.X - (borders.Left + borders.Right), oneLineTextSize),
             };
 
 
@@ -102,10 +102,9 @@ namespace MultiplayerZelda.UI.TitleScreen
 
         private void CreateMainMenuButtonForMainMenuUi(TextBoxConfig textConfigForButton, Point buttonSize, GuiComponent buttonParent, GuiButtonController buttonControllerToaddTo)
         {
-            var newButton = new TitleScreenMainMenuButton(textConfigForButton, buttonSize, textConfigForButton.parentOffset,
+            var newButton = new TitleScreenMainMenuButton(textConfigForButton, buttonSize, textConfigForButton.ParentOffset,
                 buttonParent);
             buttonControllerToaddTo.AddButton(newButton);
-            //newButton.AutoSetSizeBasedOnText();
         }
 
     }
