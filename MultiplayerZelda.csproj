@@ -51,7 +51,13 @@
     <ProjectReference Include="..\SgEngine\SgEngine.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Config\Ui\Screens\" />
     <Folder Include="UI\MainMenu\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Config\Ui\Screens\MainTitleScreenUi.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <Exec Command="copy &quot;C:\Users\blanc\OneDrive - Supergoon Games\GameAssets\ZeldaAssets\Music\FmodProj\Build\Desktop\master.bank&quot; &quot;C:\Users\blanc\OneDrive - Supergoon Games\src\xna\zeldaXna\MultiplayerZelda\Content\Sound\Master.bank&quot;&#xD;&#xA;copy &quot;C:\Users\blanc\OneDrive - Supergoon Games\GameAssets\ZeldaAssets\Music\FmodProj\Build\Desktop\master.strings.bank&quot; &quot;C:\Users\blanc\OneDrive - Supergoon Games\src\xna\zeldaXna\MultiplayerZelda\Content\Sound\Master.strings.bank&quot;" />

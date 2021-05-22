@@ -50,7 +50,7 @@ namespace MultiplayerZelda.Stages.StartingScreen
         public override void BeginRun()
         {
 
-            //PlayBgm(ZeldaMusic.TitleTheme);
+            PlayBgm(ZeldaMusic.TitleTheme);
             StartLogoFadeIn();
         }
 

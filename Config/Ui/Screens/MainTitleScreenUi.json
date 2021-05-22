@@ -1,0 +1,27 @@
+{
+    "Panels" : [
+        {
+            "Name" : "Background Image",
+            "Location" : {
+                "X" : 384,
+                "Y" : 286
+            },
+            "Size" : {
+                "X" : 384,
+                "Y" : 286
+            },
+            "Graphic" : "none",
+            "TextComponents" : [
+                {
+                    "Alignment" : "Center",
+                    "DisplayText" : "Welcome to our Zelda maker and Zelda Multiplayer!",
+                    "FontType" : "ChronoN",
+                    "ParentOffset" : {
+                        "X" : 20,
+                        "Y" : 10
+                    }
+                }
+            ]
+        }
+    ]
+}
