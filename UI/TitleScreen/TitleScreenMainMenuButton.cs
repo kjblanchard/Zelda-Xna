@@ -17,7 +17,6 @@ namespace MultiplayerZelda.UI.TitleScreen
     {
         public TitleScreenMainMenuButton(TextBoxConfig textBoxConfig, Point size, Vector2 parentOffset, GuiComponent parent = null, Enum graphicToLoad = null) : base(size, parentOffset, parent,textBoxConfig )
         {
-            DebugMode = true;
         }
 
 
