@@ -3,14 +3,14 @@
         {
             "Name" : "Background Image",
             "Location" : {
-                "X" : 192,
-                "Y" : 143
+                "X" : 172,
+                "Y" : 123
             },
             "Size" : {
                 "X" : 384,
                 "Y" : 286
             },
-            "Graphic" : -1,
+            "Graphic" : 3,
             "TextComponents" : [
                 {
                     "Alignment" : "Center",
@@ -18,7 +18,7 @@
                     "FontType" : 0,
                     "ParentOffset" : {
                         "X" : 20,
-                        "Y" : 10
+                        "Y" : 30
                     }
                 }
             ]
