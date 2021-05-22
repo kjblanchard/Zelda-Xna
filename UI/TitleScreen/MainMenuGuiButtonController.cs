@@ -32,7 +32,7 @@ namespace MultiplayerZelda.UI.TitleScreen
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            CursorGuiImageComponent.LocationOverridePosition = UpdateCursorPosition();
+            CursorGuiImageComponent.LocalPosition = UpdateCursorPosition();
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

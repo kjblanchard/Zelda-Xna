@@ -15,27 +15,28 @@ namespace MultiplayerZelda.UI.TitleScreen
 {
     public class TitleScreenMainMenuButton : GuiButton
     {
-        public TitleScreenMainMenuButton(TextBoxConfig textBoxConfig, Point size, Vector2 parentOffset, GuiComponent parent = null, Enum graphicToLoad = null) : base(textBoxConfig, size, parentOffset, parent, graphicToLoad)
+        public TitleScreenMainMenuButton(TextBoxConfig textBoxConfig, Point size, Vector2 parentOffset, GuiComponent parent = null, Enum graphicToLoad = null) : base(size, parentOffset, parent,textBoxConfig )
         {
+            DebugMode = true;
         }
 
 
-        public override void OnSelected()
+        protected override void OnSelected()
         {
             base.OnSelected();
-            _guiTextComponent.TextColor = Color.LightBlue;
+            _buttonTextComponent.TextColor = Color.LightBlue;
         }
 
-        public override void OnDeselected()
+        protected override void OnDeselected()
         {
             base.OnDeselected();
-            _guiTextComponent.TextColor = Color.White;
+            _buttonTextComponent.TextColor = Color.White;
         }
 
         public override void OnClick()
         {
             base.OnClick();
-            Debug.Write("This boi was just clicked " + _textBoxConfig.displayText + "\n");
+            Debug.Write("This boi was just clicked " + _buttonTextComponent.DisplayText);
         }
 
     }

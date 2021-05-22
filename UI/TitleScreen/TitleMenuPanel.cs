@@ -87,26 +87,26 @@ namespace MultiplayerZelda.UI.TitleScreen
             var mainMenuGuiButtonController = new MainMenuGuiButtonController(MainMenuUiPanel);
             MainMenuUiPanel.AddUiObject(mainMenuGuiButtonController);
 
-            var newGameTextButton = CreateMainMenuButtonForMainMenuUi(newGameTextConfig, buttonSize, MainMenuUiPanel);
-            var mainMenuContinueButton =
-                CreateMainMenuButtonForMainMenuUi(continueTextConfig, buttonSize, MainMenuUiPanel);
-            var optionsTextButton = CreateMainMenuButtonForMainMenuUi(optionsTextBox, buttonSize, MainMenuUiPanel);
-            var debugButton = CreateMainMenuButtonForMainMenuUi(debugOptionsTextBox, buttonSize, MainMenuUiPanel);
+             CreateMainMenuButtonForMainMenuUi(newGameTextConfig, buttonSize, MainMenuUiPanel,mainMenuGuiButtonController);
+            
+                CreateMainMenuButtonForMainMenuUi(continueTextConfig, buttonSize, MainMenuUiPanel,mainMenuGuiButtonController);
+            CreateMainMenuButtonForMainMenuUi(optionsTextBox, buttonSize, MainMenuUiPanel,mainMenuGuiButtonController);
+            CreateMainMenuButtonForMainMenuUi(debugOptionsTextBox, buttonSize, MainMenuUiPanel,mainMenuGuiButtonController);
 
             GameWorld.Gui.MasterCanvas.AddPanel(mainMenuBackgroundPanel);
             GameWorld.Gui.MasterCanvas.AddPanel(MainMenuUiPanel);
 
-            mainMenuGuiButtonController.AddButtons(newGameTextButton, mainMenuContinueButton, optionsTextButton, debugButton);
             mainMenuGuiButtonController.ButtonsActive = true;
         }
 
 
-        private TitleScreenMainMenuButton CreateMainMenuButtonForMainMenuUi(TextBoxConfig textConfigForButton, Point buttonSize, GuiComponent buttonParent)
+        private void CreateMainMenuButtonForMainMenuUi(TextBoxConfig textConfigForButton, Point buttonSize, GuiComponent buttonParent, GuiButtonController buttonControllerToaddTo)
         {
             var newButton = new TitleScreenMainMenuButton(textConfigForButton, buttonSize, textConfigForButton.parentOffset,
                 buttonParent);
-            newButton.AutoSetSizeBasedOnText();
-            return newButton;
+            buttonControllerToaddTo.AddButton(newButton);
+            //newButton.AutoSetSizeBasedOnText();
         }
+
     }
 }
