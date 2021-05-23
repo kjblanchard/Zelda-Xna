@@ -1,7 +1,9 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Security.Cryptography.X509Certificates;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
+using MultiplayerZelda.UI;
 using SgEngine.Core;
 using SgEngine.Core.Input;
 using SgEngine.EKS;
@@ -13,12 +15,17 @@ namespace MultiplayerZelda
     /// </summary>
     public class ZeldaGameWorld : GameWorld
     {
+        public static ZeldaUiParser ZeldaUiParser => _instance._zeldaUiParser;
+        private new static ZeldaGameWorld _instance;
         private readonly ZeldaLevel _zeldaLevel;
+        private readonly ZeldaUiParser _zeldaUiParser;
 
         public ZeldaGameWorld()
         {
+            _zeldaUiParser = new ZeldaUiParser();
             _zeldaLevel = new ZeldaLevel();
             Controller.MouseDebugMode = true;
+            _instance = this;
 
         }
 

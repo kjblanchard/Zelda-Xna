@@ -1,27 +1,134 @@
 {
-    "Panels" : [
+  "Panels": [
+    {
+      "Name": "Background Image",
+      "Location": {
+        "X": 172,
+        "Y": 123
+      },
+      "Size": {
+        "X": 384,
+        "Y": 286
+      },
+      "Graphic": 3,
+      "TextComponents": [
         {
-            "Name" : "Background Image",
-            "Location" : {
-                "X" : 172,
-                "Y" : 123
-            },
-            "Size" : {
-                "X" : 384,
-                "Y" : 286
-            },
-            "Graphic" : 3,
-            "TextComponents" : [
-                {
-                    "Alignment" : "Center",
-                    "DisplayText" : "Welcome to our Zelda maker and Zelda Multiplayer!",
-                    "FontType" : 0,
-                    "ParentOffset" : {
-                        "X" : 20,
-                        "Y" : 30
-                    }
-                }
-            ]
+          "Alignment": "Center",
+          "DisplayText": "Welcome to our Zelda maker and Zelda Multiplayer!",
+          "FontType": 0,
+          "ParentOffset": {
+            "X": 80,
+            "Y": 30
+          }
         }
-    ]
+      ]
+    },
+    {
+      "Name": "TitleScreenMenuBox",
+      "Location": {
+        "X": 300,
+        "Y": 150
+      },
+      "Size": {
+        "X": 90,
+        "Y": 90
+      },
+      "Graphic": 2,
+      "ButtonControllers": [
+        {
+          "Type": 0,
+          "Buttons": [
+            {
+              "Name": "NewGameButton",
+              "Type": 0,
+              "Location": {
+                "X": 13,
+                "Y": 10
+              },
+              "Size": {
+                "X": 67,
+                "Y": 11
+              },
+              "Graphic": -1,
+              "TextComponent": {
+                "Alignment": "Left",
+                "DisplayText": "New Game",
+                "FontType": 0,
+                "ParentOffset": {
+                  "X": 13,
+                  "Y": 10
+                }
+              }
+            },
+            {
+              "Name": "ContinueButton",
+              "Type": 0,
+              "Location": {
+                "X": 13,
+                "Y": 30
+              },
+              "Size": {
+                "X": 67,
+                "Y": 11
+              },
+              "Graphic": -1,
+              "TextComponent": {
+                "Alignment": "Left",
+                "DisplayText": "Continue",
+                "FontType": 0,
+                "ParentOffset": {
+                  "X": 13,
+                  "Y": 30
+                }
+              }
+            },
+            {
+              "Name": "OptionsButton",
+              "Type": 0,
+              "Location": {
+                "X": 13,
+                "Y": 50
+              },
+              "Size": {
+                "X": 67,
+                "Y": 11
+              },
+              "Graphic": -1,
+              "TextComponent": {
+                "Alignment": "Left",
+                "DisplayText": "Options",
+                "FontType": 0,
+                "ParentOffset": {
+                  "X": 13,
+                  "Y": 50
+                }
+              }
+            },
+            {
+              "Name": "DebugButton",
+              "Type": 0,
+              "Location": {
+                "X": 13,
+                "Y": 70
+              },
+              "Size": {
+                "X": 67,
+                "Y": 11
+              },
+              "Graphic": -1,
+              "TextComponent": {
+                "Alignment": "Left",
+                "DisplayText": "Debug Mode",
+                "FontType": 0,
+                "ParentOffset": {
+                  "X": 13,
+                  "Y": 70
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
