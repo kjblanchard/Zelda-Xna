@@ -6,8 +6,10 @@
 ////////////////////////////////////////////////////////////
 
 using Microsoft.Xna.Framework;
+using MultiplayerZelda.Utils.Enums;
 using SgEngine.GUI.Components;
 using SgEngine.GUI.Types;
+using SgEngine.Interfaces;
 
 namespace MultiplayerZelda.UI.TitleScreen
 {
@@ -21,6 +23,7 @@ namespace MultiplayerZelda.UI.TitleScreen
                     LocationOverride = true,
                     IsVisible = false
                 };
+            _moveSoundEffect = _selectSoundEffect = ZeldaSfx.CursorMove;
         }
 
         public override void Update(GameTime gameTime)

@@ -1,36 +1,35 @@
 {
-    "Bankfiles" : 
-    [
+  "Bankfiles": [
+    {
+      "BankDescription": "BGM",
+      "BankName": "Content/Sound/Master.bank",
+      "BankStringName": "Content/Sound/Master.strings.bank",
+      "Events": [
         {
-            "BankDescription": "BGM",
-            "BankName": "Content/Sound/Master.bank",
-            "BankStringName": "Content/Sound/Master.strings.bank",
-            "Events":[
-              {
-                "EventName": "FirstEvent",
-                "SongId": 0
+          "EventName": "FirstEvent",
+          "SongId": 0
 
-              },
-              {
-                "EventName": "TitleScreenMusic",
-                "SongId": 1 
-              }
-
-            ]
         },
         {
-            "BankDescription": "SFX",
-            "BankName": "Content/Sound/Master.bank",
-            "BankStringName": "Content/Sound/Master.strings.bank",
-            "Events":[
-                {
-                    "EventName":"FirstEvent",
-                    "SongId":0
-
-                }
-            ]
+          "EventName": "TitleScreenMusic",
+          "SongId": 1
         }
 
-    ]
+      ]
+    },
+    {
+      "BankDescription": "SFX",
+      "BankName": "Content/Sound/Master.bank",
+      "BankStringName": "Content/Sound/Master.strings.bank",
+      "Events": [
+        {
+          "EventName": "CursorMove",
+          "SongId": 3
+
+        }
+      ]
+    }
+
+  ]
 
 }

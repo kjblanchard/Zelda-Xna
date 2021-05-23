@@ -10,4 +10,9 @@ namespace MultiplayerZelda.Utils.Enums
         MenuTheme = 1
     }
 
+    public enum ZeldaSfx
+    {
+        CursorMove = 3
+    }
+
 }

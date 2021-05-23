@@ -8,8 +8,11 @@
 using System;
 using System.Diagnostics;
 using Microsoft.Xna.Framework;
+using MultiplayerZelda.Utils.Enums;
+using SgEngine.Core.Sounds;
 using SgEngine.GUI.Components;
 using SgEngine.GUI.Types;
+using SgEngine.Interfaces;
 
 namespace MultiplayerZelda.UI.TitleScreen
 {
