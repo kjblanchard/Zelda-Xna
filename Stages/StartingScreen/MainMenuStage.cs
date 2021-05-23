@@ -7,6 +7,7 @@
 
 using Microsoft.Xna.Framework;
 using MultiplayerZelda.UI.TitleScreen;
+using MultiplayerZelda.Utils.Enums;
 
 namespace MultiplayerZelda.Stages.StartingScreen
 {
@@ -19,7 +20,14 @@ namespace MultiplayerZelda.Stages.StartingScreen
             titelPanel = new TitleMenuPanel();
             titelPanel.Initialize();
         }
-        
+
+        public override void BeginRun()
+        {
+            base.BeginRun();
+            PlayBgm(ZeldaMusic.MenuTheme);
+
+        }
+
 
         public override void Update(GameTime gameTime)
         {

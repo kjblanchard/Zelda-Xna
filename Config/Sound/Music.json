@@ -6,11 +6,16 @@
             "BankName": "Content/Sound/Master.bank",
             "BankStringName": "Content/Sound/Master.strings.bank",
             "Events":[
-                {
-                    "EventName":"FirstEvent",
-                    "SongId":0
+              {
+                "EventName": "FirstEvent",
+                "SongId": 0
 
-                }
+              },
+              {
+                "EventName": "TitleScreenMusic",
+                "SongId": 1 
+              }
+
             ]
         },
         {
