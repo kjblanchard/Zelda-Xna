@@ -35,7 +35,7 @@ namespace MultiplayerZelda
             _zeldaLevel.Initialize();
             _contentLoader = new ContentLoader(Content, ZeldaGraphicsDictionary.GameGraphicsDictionary,ZeldaFontDictionary.ZeldaFonts);
             Controller.MouseSpriteSheet = ContentLoader.GetSpriteSheet(ZeldaGraphics.MainMouseCursor);
-            Mouse.SetCursor(MouseCursor.FromTexture2D(Controller.MouseSpriteSheet._texture, 0, 0));
+            Mouse.SetCursor(MouseCursor.FromTexture2D(Controller.MouseSpriteSheet._texture, 16, 16));
         }
 
 
