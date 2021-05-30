@@ -20,6 +20,13 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/ChronoType.spritefont
 
+#begin Fonts/File.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/File.spritefont;Fonts/DebugText.spritefont
+
 #begin Graphics/Logos/FF7-remade-main-menu-670x377.png
 /importer:TextureImporter
 /processor:TextureProcessor
