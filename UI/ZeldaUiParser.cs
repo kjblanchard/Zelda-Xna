@@ -5,7 +5,6 @@
 //
 ////////////////////////////////////////////////////////////
 
-using System;
 using Microsoft.Xna.Framework;
 using MultiplayerZelda.UI.TitleScreen;
 using SgEngine.GUI.Components;
@@ -38,6 +37,12 @@ namespace MultiplayerZelda.UI
             };
         }
 
+        /// <summary>
+        /// Loads a Button controller.  This should be overridden, so that you can use game specific button controllers
+        /// </summary>
+        /// <param name="buttonControllerJson">The loaded json that should be used</param>
+        /// <param name="parent">The parent for this guy</param>
+        /// <returns>The guibuttonController that you want</returns>
         public override GuiButtonController CreateButtonController(ButtonController buttonControllerJson, GuiComponent parent)
         {
             return buttonControllerJson.Type switch
