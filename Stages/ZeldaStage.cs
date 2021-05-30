@@ -1,11 +1,10 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MultiplayerZelda.BaseClasses;
 using MultiplayerZelda.Utils.Enums;
-using SgEngine.Core.Sounds;
 using SgEngine.EKS;
 using SgEngine.Interfaces;
+using SgEngine.Interfaces.Sound;
 
 namespace MultiplayerZelda.Stages
 {
@@ -13,14 +12,13 @@ namespace MultiplayerZelda.Stages
     /// The base class for all zelda stages.  Gives you some default methods and a sound system
     /// it's also a IState, and controlled by a statemachine
     /// </summary>
-    public class ZeldaStage : IState
+    public class ZeldaStage : IState, IPlayMusic
     {
-        private static SoundSystem _soundSystem;
         protected GameObjectList<Logos> _gameObjectList = new GameObjectList<Logos>();
+        protected IPlayMusic AsIPlayMusic => this;
 
         public ZeldaStage()
         {
-            _soundSystem ??= GameWorld.SoundSystem;
 
         }
         public virtual void Initialize()
@@ -56,7 +54,7 @@ namespace MultiplayerZelda.Stages
         /// <param name="bgmToPlay">This is the music that should be played</param>
         protected void PlayBgm(ZeldaMusic bgmToPlay)
         {
-            _soundSystem.PlayBgm(bgmToPlay);
+            AsIPlayMusic.PlayMusic(bgmToPlay);
         }
     }
 }
