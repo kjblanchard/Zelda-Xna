@@ -23,8 +23,8 @@ namespace MultiplayerZelda
         {
             _zeldaUiParser = new ZeldaUiParser();
             _zeldaLevel = new ZeldaLevel();
-            Controller.MouseDebugMode = true;
             _instance = this;
+            InputSg.MouseDebugMode = true;
 
         }
 
@@ -33,8 +33,14 @@ namespace MultiplayerZelda
             base.Initialize();
             _zeldaLevel.Initialize();
             _contentLoader = new ContentLoader(Content, ZeldaGraphicsDictionary.GameGraphicsDictionary,ZeldaFontDictionary.ZeldaFonts);
-            Controller.MouseSpriteSheet = ContentLoader.GetSpriteSheet(ZeldaGraphics.MainMouseCursor);
-            Mouse.SetCursor(MouseCursor.FromTexture2D(Controller.MouseSpriteSheet._texture, 16, 16));
+            SetupMouseCursor();
+        }
+
+        private void SetupMouseCursor()
+        {
+            
+            InputSg.MouseSpriteSheet = ContentLoader.GetSpriteSheet(ZeldaGraphics.MainMouseCursor);
+            Mouse.SetCursor(MouseCursor.FromTexture2D(InputSg.MouseSpriteSheet._texture, 0, 0));
         }
 
 
@@ -42,6 +48,7 @@ namespace MultiplayerZelda
         {
             base.BeginRun();
             _zeldaLevel.BeginRun();
+            
         }
 
         protected override void Update(GameTime gameTime)
@@ -67,7 +74,7 @@ namespace MultiplayerZelda
             _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, _resolutionHelper.SpriteScale);
             Gui.Draw(gameTime, _spriteBatch);
 
-            if(Controller.MouseDebugMode)
+            if(InputSg.MouseDebugMode)
                 _spriteBatch.DrawRectangle(Controller.MouseBounds(),Color.White,0.5f);
             _spriteBatch.End();
         }
