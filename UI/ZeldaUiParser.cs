@@ -47,7 +47,7 @@ namespace MultiplayerZelda.UI
         {
             return buttonControllerJson.Type switch
             {
-                0 => new MAIN_MENU_GUI_BUTTON_CONTROLLER(parent),
+                0 => new MainMenuGuiButtonController(parent),
                 _ => null
             };
         }
