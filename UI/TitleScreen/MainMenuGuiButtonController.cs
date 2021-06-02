@@ -13,9 +13,9 @@ using SgEngine.Interfaces;
 
 namespace MultiplayerZelda.UI.TitleScreen
 {
-    public class MainMenuGuiButtonController : GuiButtonController
+    public class MAIN_MENU_GUI_BUTTON_CONTROLLER : GuiButtonController
     {
-        public MainMenuGuiButtonController(GuiComponent parent, Vector2 offset = new Vector2(), Point size = new Point()) : base(parent, offset, size)
+        public MAIN_MENU_GUI_BUTTON_CONTROLLER(GuiComponent parent, Vector2 offset = new Vector2(), Point size = new Point()) : base(parent, offset, size)
         {
             CursorGuiImageComponent =
                 new GuiImageComponent(this, ZeldaGraphics.RightPointFingerCursor, new Point(16, 16))
