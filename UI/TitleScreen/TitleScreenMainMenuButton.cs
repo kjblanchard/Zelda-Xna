@@ -14,7 +14,7 @@ namespace MultiplayerZelda.UI.TitleScreen
 {
     public class TitleScreenMainMenuButton : GuiButton
     {
-        public TitleScreenMainMenuButton(TextBoxConfig textBoxConfig, Point size, Vector2 parentOffset, GuiComponent parent, int graphicToLoad) : base(size, parentOffset, parent,textBoxConfig )
+        public TitleScreenMainMenuButton(TextBoxConfig textBoxConfig, Point size, Vector2 parentOffset, GuiComponent parent, int graphicToLoad) : base(size, parentOffset, parent, textBoxConfig)
         {
         }
 
@@ -34,7 +34,7 @@ namespace MultiplayerZelda.UI.TitleScreen
         public override void OnClick()
         {
             base.OnClick();
-            Debug.Write("This boi was just clicked " + _buttonTextComponent.DisplayText);
+            SendDebugMessage("This boi was just clicked " + _buttonTextComponent.DisplayText);
         }
 
     }
